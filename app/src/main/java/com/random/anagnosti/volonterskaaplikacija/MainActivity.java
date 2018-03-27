@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     public void welcomeAction(View view){
         /*String editText = (String) findViewById(R.id.editText);
         String message = editText.toString();*/
-        Intent intent = new Intent(this, WelcomeActivity.class);
-        startActivity(intent);
+        Intent intent2 = new Intent(this, WelcomeActivity.class);
+        startActivity(intent2);
 
 
 
