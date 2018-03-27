@@ -66,6 +66,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="64dp"
-        android:text="Register Here" />
+        android:text="Register Here"
+        android:onClick="registerAction"/>
 
 </RelativeLayout>
