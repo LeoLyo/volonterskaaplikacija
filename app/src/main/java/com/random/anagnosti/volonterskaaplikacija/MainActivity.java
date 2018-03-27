@@ -23,5 +23,6 @@ public class MainActivity extends AppCompatActivity {
         String message = editText.toString();*/
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
+
     }
 }
