@@ -12,6 +12,4 @@
         <item name="android:textColorSecondary">@color/secondary_text</item>
     </style>
 
-    <style name="TestTheme" parent="android:Theme.Holo" />
-
 </resources>
