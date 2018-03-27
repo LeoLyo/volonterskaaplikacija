@@ -17,4 +17,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
+
+    public void welcomeAction(View view){
+        /*String editText = (String) findViewById(R.id.editText);
+        String message = editText.toString();*/
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
 }
