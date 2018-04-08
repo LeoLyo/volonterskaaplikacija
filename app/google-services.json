@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "912923771508",
+    "firebase_url": "https://volap-f9b7d.firebaseio.com",
+    "project_id": "volap-f9b7d",
+    "storage_bucket": "volap-f9b7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912923771508:android:08589511ab494862",
+        "android_client_info": {
+          "package_name": "com.random.anagnosti.volonterskaaplikacija"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912923771508-vu80h3d71pbr62gngm0lfj0pjgcolpd3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.random.anagnosti.volonterskaaplikacija",
+            "certificate_hash": "022c73b1851563c63d6371f987d4bade612d59fd"
+          }
+        },
+        {
+          "client_id": "912923771508-o6hd51tcf1edibo9nrfokfcamg78mf1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpSXC8RovUAd9skkVYe5joU2gBHAqqdoU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912923771508-o6hd51tcf1edibo9nrfokfcamg78mf1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
