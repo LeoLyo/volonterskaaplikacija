@@ -1,5 +1,6 @@
 package com.random.anagnosti.volonterskaaplikacija;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -107,7 +108,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBarRegister.setVisibility(View.GONE);
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"User Registered Succesfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"User Registered successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent2 = new Intent(RegisterActivity.this, WelcomeActivity.class);
+                    intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent2);
+                    finish();
                 }else{
                     if(task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(),"This email is already registered",Toast.LENGTH_SHORT).show();
