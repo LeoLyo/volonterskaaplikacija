@@ -1,5 +1,6 @@
 package com.random.anagnosti.volonterskaaplikacija;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     FirebaseAuth mAuth;
     EditText editTextEmailLogin, editTextPasswordLogin;
