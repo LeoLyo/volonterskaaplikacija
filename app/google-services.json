@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "912923771508-rfck4t46k70k7sljphpo4a72qhv2edlt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.random.anagnosti.volonterskaaplikacija",
+            "certificate_hash": "5c5de534c2de4544c34250bc7f43d9220f45e51a"
+          }
+        },
+        {
           "client_id": "912923771508-vu80h3d71pbr62gngm0lfj0pjgcolpd3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

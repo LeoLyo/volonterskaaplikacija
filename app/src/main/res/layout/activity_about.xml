@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient"
+    tools:context="com.random.anagnosti.volonterskaaplikacija.WelcomeActivity">
+
+
+    <TextView
+        android:id="@+id/welcomee"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:text="Welcome!"
+        android:textAlignment="center"
+        android:textColor="#e6e6e6"
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/imeIslika"
+        android:layout_height="73dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/welcomee">
+
+        <ImageView
+            android:id="@+id/slikakorisnika"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="22dp"
+            android:src="@drawable/slikakorisnika" />
+
+        <TextView
+            android:id="@+id/nameSurname"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:ems="10"
+            android:text="Marko Pavlovic"
+            android:textAlignment="center"
+            android:textColor="#e6e6e6"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/podaci"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imeIslika"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/birthDate"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="03.03.1996."
+            android:textAlignment="center"
+            android:textColor="#e6e6e6"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/addressa"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            android:text="Dositeja Obradovica 43/2"
+            android:textAlignment="center"
+            android:textColor="#e6e6e6"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+381645555556"
+            android:textAlignment="center"
+            android:textColor="#e6e6e6"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</RelativeLayout>
