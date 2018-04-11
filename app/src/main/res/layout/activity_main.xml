@@ -19,7 +19,7 @@
         android:ems="10"
         android:hint="Email"
         android:textColor="#fff"
-        android:inputType="textEmailAddress"
+        android:inputType="textEmailAddress|textAutoCorrect"
         android:textSize="16sp" />
 
     <EditText

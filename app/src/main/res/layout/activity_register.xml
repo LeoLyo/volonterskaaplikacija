@@ -55,7 +55,7 @@
         android:ems="10"
         android:hint="Email"
         android:textColor="#fff"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress|textAutoCorrect" />
 
     <EditText
         android:id="@+id/editTextFirstName"
@@ -66,7 +66,7 @@
         android:ems="10"
         android:hint="First Name"
         android:textColor="#fff"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName|textCapWords|textAutoCorrect" />
 
     <EditText
         android:id="@+id/editTextLastName"
@@ -77,7 +77,7 @@
         android:ems="10"
         android:hint="Last Name"
         android:textColor="#fff"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName|textCapWords|textAutoCorrect" />
 
     <EditText
         android:id="@+id/editTextAddress"
@@ -87,7 +87,7 @@
         android:layout_below="@+id/editTextLastName"
         android:ems="10"
         android:hint="Address"
-        android:inputType="textPersonName"
+        android:inputType="textPostalAddress|textCapWords"
         android:selectAllOnFocus="false"
         android:singleLine="false"
         android:textColor="#fff"
