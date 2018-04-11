@@ -47,6 +47,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
+            android:onClick="createEventWindow"
             app:cardBackgroundColor="@color/crvenaPastel"
             app:cardCornerRadius="50dp"
             app:cardElevation="10dp">
