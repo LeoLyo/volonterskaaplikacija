@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".WelcomeActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".WelcomeActivity"/>
+        <activity android:name=".LogInActivity"/>
         <activity android:name=".CreateEventActivity"/>
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key"></meta-data>
