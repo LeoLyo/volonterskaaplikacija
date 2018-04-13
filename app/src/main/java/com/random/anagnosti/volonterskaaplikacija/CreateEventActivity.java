@@ -63,6 +63,7 @@ public class CreateEventActivity extends Activity {
                 String locationAddress = String.format("Location address: %s",place.getAddress());
                 String locationName = String.format("Location name: %s",place.getName());
                 eventLocation.setText(locationName+" | "+locationAddress);
+
             }
         }
     }

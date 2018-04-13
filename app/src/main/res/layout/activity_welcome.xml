@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,124 +7,147 @@
     android:background="@drawable/gradient"
     tools:context="com.random.anagnosti.volonterskaaplikacija.WelcomeActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentStart="true"
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/zelena"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/plava"
+        android:layout_marginEnd="56dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/zelenaPastel"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crvena">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="+"
+                android:textColor="#fff"
+                android:textSize="40sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/crvena"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="123dp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="116dp"
+        android:onClick="createEventWindow"
+        app:cardBackgroundColor="@color/crvenaPastel"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/zelena"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/plava"
-            android:layout_marginEnd="85dp"
-            app:cardBackgroundColor="@color/zelenaPastel"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="+"
+                android:textColor="#fff"
+                android:textSize="40sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="+"
-                    android:textColor="#fff"
-                    android:textSize="40sp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/plava"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/plavaPastel"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/zelena"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crvena">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/crvena"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:onClick="createEventWindow"
-            app:cardBackgroundColor="@color/crvenaPastel"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="+"
+                android:textColor="#fff"
+                android:textSize="40sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="+"
-                    android:textColor="#fff"
-                    android:textSize="40sp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+    <TextView
+        android:id="@+id/textCreateEvent"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/crvena"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="Create event"
+        android:textColor="#ffff"
+        app:layout_constraintBottom_toTopOf="@+id/crvena"
+        app:layout_constraintEnd_toEndOf="@+id/crvena"
+        app:layout_constraintStart_toStartOf="@+id/crvena" />
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/plava"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="61dp"
-            android:layout_marginStart="85dp"
-            app:cardBackgroundColor="@color/plavaPastel"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="10dp">
+    <TextView
+        android:id="@+id/textAbout"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/zelena"
+        android:layout_below="@+id/zelena"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Unknown"
+        android:textColor="#ffff"
+        app:layout_constraintEnd_toEndOf="@+id/zelena"
+        app:layout_constraintStart_toStartOf="@+id/zelena"
+        app:layout_constraintTop_toBottomOf="@+id/zelena" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="+"
-                    android:textColor="#fff"
-                    android:textSize="40sp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <TextView
-            android:id="@+id/textCreateEvent"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/crvena"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-32dp"
-            android:gravity="center"
-            android:text="Create event"
-            android:textColor="#ffff" />
-
-        <TextView
-            android:id="@+id/textAbout"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/zelena"
-            android:layout_below="@+id/zelena"
-            android:gravity="center"
-            android:text="Unknown"
-            android:textColor="#ffff" />
-
-        <TextView
-            android:id="@+id/textJoinEvent"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/plava"
-            android:layout_below="@+id/zelena"
-            android:gravity="center"
-            android:text="Join event"
-            android:textColor="#ffff" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/textJoinEvent"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/plava"
+        android:layout_below="@+id/zelena"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Join event"
+        android:textColor="#ffff"
+        app:layout_constraintEnd_toEndOf="@+id/plava"
+        app:layout_constraintStart_toStartOf="@+id/plava"
+        app:layout_constraintTop_toBottomOf="@+id/plava" />
 
     <Button
         android:id="@+id/showItems"
@@ -133,10 +156,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="52dp"
+        android:layout_marginStart="16dp"
         android:background="@color/colorPrimaryDark"
         android:onClick="showAction"
-        android:text="TASKS" />
+        android:text="TASKS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 
@@ -151,4 +177,4 @@
         android:listSelector="@color/listAccent"/>
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

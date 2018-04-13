@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="226dp"
+    <AutoCompleteTextView
+        android:id="@+id/editEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Event name"
+        android:singleLine="true"
+        android:textColor="#fff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <AutoCompleteTextView
-            android:id="@+id/editEventName"
-            android:layout_width="165dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:hint="Event name"
-            android:singleLine="true"
-            android:textColor="#fff" />
+    <EditText
+        android:id="@+id/editOrganiser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editEventName"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Organiser"
+        android:inputType="textCapWords|textAutoCorrect"
+        android:singleLine="true"
+        android:textColor="#fff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editEventName" />
 
-        <EditText
-            android:id="@+id/editOrganiser"
-            android:layout_width="165dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/editEventName"
-            android:ems="10"
-            android:hint="Organiser"
-            android:inputType="textCapWords|textAutoCorrect"
-            android:singleLine="true"
-            android:textColor="#fff" />
+    <EditText
+        android:id="@+id/editNumberOfDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editOrganiser"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Number of days"
+        android:inputType="number"
+        android:textColor="#fff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editOrganiser" />
 
-        <EditText
-            android:id="@+id/editNumberOfDays"
-            android:layout_width="165dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/editOrganiser"
-            android:ems="10"
-            android:hint="Number of days"
-            android:inputType="number"
-            android:textColor="#fff" />
+    <TextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editNumberOfDays"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="creatingAnEvent"
+        android:text="Location"
+        android:textColor="#2d76b7"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNumberOfDays" />
 
-        <TextView
-            android:id="@+id/textViewLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/editNumberOfDays"
-            android:onClick="creatingAnEvent"
-            android:text="Location"
-            android:textColor="	#696969"
-            android:textSize="18sp" />
 
-    </RelativeLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
