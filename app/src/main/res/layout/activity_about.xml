@@ -7,24 +7,13 @@
     tools:context="com.random.anagnosti.volonterskaaplikacija.WelcomeActivity">
 
 
-    <TextView
-        android:id="@+id/welcomee"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:text="Welcome!"
-        android:textAlignment="center"
-        android:textColor="#e6e6e6"
-        android:textSize="20dp" />
-
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/imeIslika"
+        android:layout_width="match_parent"
         android:layout_height="73dp"
+        android:layout_above="@+id/podaci"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/welcomee">
+        android:background="@color/colorPrimaryLight">
 
         <ImageView
             android:id="@+id/slikakorisnika"
@@ -37,33 +26,34 @@
 
         <TextView
             android:id="@+id/nameSurname"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="14dp"
             android:ems="10"
-            android:text="Marko Pavlovic"
             android:textAlignment="center"
-            android:textColor="#e6e6e6"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="25dp" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/podaci"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="190dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/imeIslika"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/birthDate"
+            android:id="@+id/emailAbout"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_weight="1"
-            android:text="03.03.1996."
             android:textAlignment="center"
-            android:textColor="#e6e6e6"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp" />
 
         <TextView
@@ -71,9 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_weight="1"
-            android:text="Dositeja Obradovica 43/2"
             android:textAlignment="center"
-            android:textColor="#e6e6e6"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp" />
 
         <TextView
@@ -81,9 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="+381645555556"
             android:textAlignment="center"
-            android:textColor="#e6e6e6"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp" />
     </LinearLayout>
 

@@ -19,6 +19,7 @@
         app:cardBackgroundColor="@color/zelenaPastel"
         app:cardCornerRadius="50dp"
         app:cardElevation="10dp"
+        android:onClick="profileAction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crvena">
 
@@ -78,9 +79,11 @@
         android:layout_marginEnd="100dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="16dp"
+        android:onClick="joinEvent"
         app:cardBackgroundColor="@color/plavaPastel"
         app:cardCornerRadius="50dp"
         app:cardElevation="10dp"
+
         app:layout_constraintEnd_toStartOf="@+id/zelena"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +130,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Unknown"
+        android:text="My Profile"
         android:textColor="#ffff"
         app:layout_constraintEnd_toEndOf="@+id/zelena"
         app:layout_constraintStart_toStartOf="@+id/zelena"

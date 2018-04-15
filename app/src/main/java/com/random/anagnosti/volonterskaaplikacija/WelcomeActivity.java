@@ -37,6 +37,18 @@ public class WelcomeActivity extends Activity {
     }
 
 
+    public void profileAction(View view)
+    {
+        Intent intent = new Intent(this, MyProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void joinEvent(View view)
+    {
+        Intent intent = new Intent(this, JoiningEventActivity.class);
+        startActivity(intent);
+    }
+
 
     public void showAction(View view){
         if(listView.getVisibility()==View.GONE) {
