@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -130,36 +131,57 @@ public class RegisterActivity extends Activity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBarRegister.setVisibility(View.GONE);
                 if(task.isSuccessful()){
+                    FirebaseUser current_user =  mAuth.getCurrentUser();
+                    if(current_user!=null){
+                        //Inputting user info into database
+                        Map<String, Object> user = new HashMap<>();
+                        user.put(EMAIL_KEY,email);
+                        user.put(FIRST_NAME_KEY,firstName);
+                        user.put(LAST_NAME_KEY,lastName);
+                        user.put(ADDRESS_KEY,address);
+                        user.put(PHONE_NUMBER_KEY,phoneNumber);
+                        user.put(PASSWORD_KEY,password);
+                        db.collection("Users").document(current_user.getUid())
+                                .set(user)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error writing document", e);
+                                    }
+                                });
 
-                    //Inputting user info into database
-                    Map<String, Object> user = new HashMap<>();
-                    user.put(EMAIL_KEY,email);
-                    user.put(FIRST_NAME_KEY,firstName);
-                    user.put(LAST_NAME_KEY,lastName);
-                    user.put(ADDRESS_KEY,address);
-                    user.put(PHONE_NUMBER_KEY,phoneNumber);
-                    user.put(PASSWORD_KEY,password);
+                        /*db.collection("Users")
+                                .add(user)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG,"Error adding document",e);
+                                    }
+                                });*/
+                        //Informing user that the registration was successful
+                        Toast.makeText(getApplicationContext(),"User Registered successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(RegisterActivity.this, WelcomeActivity.class);
+                        intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent2);
+                        finish();
+                    }
+                   else{
+                        Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    }
 
-                    db.collection("Users")
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG,"Error adding document",e);
-                                }
-                            });
-                    //Informing user that the registration was successful
-                    Toast.makeText(getApplicationContext(),"User Registered successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent2 = new Intent(RegisterActivity.this, WelcomeActivity.class);
-                    intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent2);
-                    finish();
+
                 }else{
                     if(task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(),"This email is already registered",Toast.LENGTH_SHORT).show();
