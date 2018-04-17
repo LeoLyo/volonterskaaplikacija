@@ -38,36 +38,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editEventName" />
 
-    <EditText
-        android:id="@+id/editNumberOfDays"
+    <TextView
+        android:id="@+id/textViewFirstDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editOrganiser"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Number of days"
-        android:inputType="number"
-        android:textColor="#fff"
+        android:layout_marginTop="16dp"
+        android:onClick="pickingFirstDay"
+        android:text="First day"
+        android:textColor="#2d76b7"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editOrganiser" />
+
+    <TextView
+        android:id="@+id/textViewLastDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editOrganiser"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:onClick="pickingLastDay"
+        android:text="Last day"
+        android:textColor="#2d76b7"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFirstDay" />
 
     <TextView
         android:id="@+id/textViewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editNumberOfDays"
+        android:layout_below="@+id/textViewFirstDay"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:onClick="creatingAnEvent"
+        android:layout_marginTop="16dp"
+        android:onClick="pickingALocation"
         android:text="Location"
         android:textColor="#2d76b7"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNumberOfDays" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLastDay" />
+
+    <TextView
+        android:id="@+id/textViewEventImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:onClick="pickingAnImage"
+        android:text="Event Image"
+        android:textColor="#2d76b7"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
+
 
 
 </android.support.constraint.ConstraintLayout>
