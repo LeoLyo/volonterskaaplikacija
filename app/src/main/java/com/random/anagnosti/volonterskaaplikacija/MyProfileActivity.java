@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-
+    private TextView image;
 
     TextView imeIprezime,adresa,brTelefona,email;
 
@@ -61,11 +62,19 @@ public class MyProfileActivity extends AppCompatActivity {
         }*/
     }
 
+    public void addProfileImage(View view){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Event Image"),101);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        image = findViewById(R.id.addImage);
         imeIprezime = findViewById(R.id.nameSurname);
         adresa = findViewById(R.id.addressa);
         email = findViewById(R.id.emailAbout);
@@ -75,6 +84,7 @@ public class MyProfileActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         loadUserInfo();
+
     }
 
 
