@@ -179,13 +179,5 @@
         android:visibility="gone"
         android:listSelector="@color/listAccent"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="edfdrtr"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="33dp" />
-
 
 </android.support.constraint.ConstraintLayout>

@@ -7,100 +7,13 @@
     android:background="@drawable/gradient"
     tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventActivity">
 
-    <AutoCompleteTextView
-        android:id="@+id/editEventName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Event name"
-        android:singleLine="true"
-        android:textColor="#fff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editOrganiser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editEventName"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Organiser"
-        android:inputType="textCapWords|textAutoCorrect"
-        android:singleLine="true"
-        android:textColor="#fff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editEventName" />
-
-    <TextView
-        android:id="@+id/textViewFirstDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editOrganiser"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:onClick="pickingFirstDay"
-        android:text="First day"
-        android:textColor="#2d76b7"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editOrganiser" />
-
-    <TextView
-        android:id="@+id/textViewLastDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editOrganiser"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:onClick="pickingLastDay"
-        android:text="Last day"
-        android:textColor="#2d76b7"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFirstDay" />
-
-    <TextView
-        android:id="@+id/textViewLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textViewFirstDay"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:onClick="pickingALocation"
-        android:text="Location"
-        android:textColor="#2d76b7"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLastDay" />
-
-    <TextView
-        android:id="@+id/textViewEventImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:onClick="pickingAnImage"
-        android:text="Event Image"
-        android:textColor="#2d76b7"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
+   <android.support.v4.view.ViewPager
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/createeventcontainer"
+       android:background="@color/colorAccent">
 
 
+   </android.support.v4.view.ViewPager>
 
 </android.support.constraint.ConstraintLayout>
