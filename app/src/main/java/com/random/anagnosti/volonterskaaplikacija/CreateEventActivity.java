@@ -3,6 +3,7 @@ package com.random.anagnosti.volonterskaaplikacija;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,14 @@ public class CreateEventActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewp=(ViewPager) findViewById(R.id.createeventcontainer);
         mViewp.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout createEventTabLayout = (TabLayout)findViewById(R.id.createeventtablayout);
+        createEventTabLayout.setupWithViewPager(mViewp);
+        int counter = createEventTabLayout.getTabCount();
+        for (int i=0;i<counter;i++){
+            createEventTabLayout.getTabAt(i).setText("Part "+(i+1));
+        }
+
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

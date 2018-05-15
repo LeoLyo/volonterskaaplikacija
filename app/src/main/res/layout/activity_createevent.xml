@@ -7,13 +7,49 @@
     android:background="@drawable/gradient"
     tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventActivity">
 
-   <android.support.v4.view.ViewPager
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/createeventcontainer"
-       android:background="@color/colorAccent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/createeventcontainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createeventtablayout">
 
 
-   </android.support.v4.view.ViewPager>
+    </android.support.v4.view.ViewPager>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/createeventtoolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AlertDialog.AppCompat.Light" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/createeventtablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createeventtoolbar">
+
+    </android.support.design.widget.TabLayout>
 
 </android.support.constraint.ConstraintLayout>

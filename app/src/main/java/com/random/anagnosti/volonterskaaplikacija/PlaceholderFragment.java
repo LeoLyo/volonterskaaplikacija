@@ -1,7 +1,6 @@
 package com.random.anagnosti.volonterskaaplikacija;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
@@ -108,6 +105,9 @@ public class PlaceholderFragment extends Fragment {
             createEventImageView.setOnClickListener(new Dispenser(getActivity(), createEventImageView,eventImageView,102));
 
             //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+        }
+        else if(getArguments().getInt(ARG_SECTION_NUMBER)==3){
 
         }
 
