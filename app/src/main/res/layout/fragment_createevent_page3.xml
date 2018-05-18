@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventFragmentPage3">
+
+
+    <ListView
+        android:id="@+id/createeventpage3listview"
+        android:layout_width="368dp"
+        android:layout_height="424dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/createeventpage3buttonConfirm"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Confirm"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createeventpage3listview" />
+
+    <Button
+        android:id="@+id/createeventpage3buttonRefresh"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:text="Refresh"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createeventpage3listview" />
+</android.support.constraint.ConstraintLayout>
+

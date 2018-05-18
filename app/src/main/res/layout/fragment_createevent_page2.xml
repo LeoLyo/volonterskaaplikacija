@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventActivity">
+    tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventFragmentPage2">
 
     <TextView
         android:id="@+id/textViewFirstDay"
@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editOrganiser"
-        android:layout_marginTop="128dp"
-        android:text="First day"
+        android:layout_marginTop="64dp"
         android:gravity="center"
+        android:text="First day"
         android:textColor="#2d76b7"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewFirstDay" />
 
     <TextView
-        android:id="@+id/textViewLocation"
+        android:id="@+id/createEventTextViewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/createEventTextViewLocation" />
 
     <ImageView
         android:id="@+id/imageViewEventImage"
@@ -83,6 +83,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventImage" />
+
+    <Button
+        android:id="@+id/buttonconfirminputspage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Confirm inputs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEventImage" />
 
 
 </android.support.constraint.ConstraintLayout>

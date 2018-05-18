@@ -66,7 +66,7 @@ public class MyProfileActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select Event Image"),101);
+        startActivityForResult(Intent.createChooser(intent,"Select EventDay Image"),101);
     }
 
     @Override
