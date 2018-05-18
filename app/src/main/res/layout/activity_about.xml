@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,8 +12,9 @@
         android:id="@+id/imeIslika"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:layout_above="@+id/podaci"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="250dp"
         android:background="@color/colorPrimaryLight">
 
         <TextView
@@ -23,6 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="14dp"
             android:ems="10"
+            android:text="name surname"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25dp" />
@@ -34,35 +37,42 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="14dp"
-            android:textColor="#2d76b7"
             android:onClick="addProfileImage"
-            android:text="Add Image" />
+            android:text="Add Image"
+            android:textColor="#2d76b7" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/podaci"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/imeIslika"
+        android:layout_marginTop="-250dp"
         android:background="@color/colorPrimaryLight"
         android:gravity="center"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/emailAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_width="269dp"
+            android:layout_height="22dp"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/imageButton"
             android:layout_weight="1"
+            android:text="email"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp" />
+
 
         <TextView
             android:id="@+id/addressa"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_weight="1"
+            android:text="address"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp" />
@@ -72,11 +82,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="bfhdbj"
+            android:text="phone"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp" />
 
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="editProfileInfo"
+        android:layout_alignParentEnd="true"
+        android:text="EDIT" />
 
 </RelativeLayout>
