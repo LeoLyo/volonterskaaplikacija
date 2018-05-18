@@ -95,6 +95,7 @@ public class EditProfileInfo extends AppCompatActivity {
         });
     }
 
+
     public void updateF()
     {
         final String firstName = ime.getText().toString().trim();
