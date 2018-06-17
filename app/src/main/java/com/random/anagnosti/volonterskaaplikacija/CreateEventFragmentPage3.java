@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -27,7 +29,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Use the {@link CreateEventFragmentPage3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventFragmentPage3 extends Fragment {
+public class CreateEventFragmentPage3 extends Fragment implements Observer{
     private static final String TAG = "CreateEventFragmentPage3";
 
 
@@ -72,7 +74,7 @@ public class CreateEventFragmentPage3 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        numberOfChildDays=-7;
+        numberOfChildDays=-68;
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -101,11 +103,26 @@ public class CreateEventFragmentPage3 extends Fragment {
             public void onClick(View view) {
                 Singleton singleton = Singleton.Instance();
                 long tempNumber = singleton.currentNumberOfDays;
-                for(int i=0;i<tempNumber;i++){
-                    EventDay ev = new EventDay();
-                    singleton.mEventDays.add(ev);
+                if(singleton.currentEventDaysChanged==true) {
+                    for (int i = 0; i < tempNumber; i++) {
+                        EventDay ev = new EventDay();
+                        singleton.mEventDays.add(ev);
+                    }
+                    listview.setAdapter(new CreateEventPage3ListAdapter(getContext(), eventDayChildren));
+                    singleton.currentEventDaysChanged=false;
+                    singleton.dateStartChanged=false;
+                    singleton.dateEndChanged=false;
+                    numberOfChildDays=tempNumber;
+                    Toast.makeText(getActivity(), "Refresh successful", Toast.LENGTH_SHORT).show();
                 }
-                listview.setAdapter(new CreateEventPage3ListAdapter(getContext(),eventDayChildren ));
+                else{
+                    if(tempNumber==numberOfChildDays){
+                        Toast.makeText(getActivity(), "Refresh failed, number of days is the same.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Refresh failed, no date has been selected yet.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         return rootView;
@@ -138,6 +155,11 @@ public class CreateEventFragmentPage3 extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void update(Observable observable, Object o) {
+
+    }
+
     /*@Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -168,5 +190,27 @@ public class CreateEventFragmentPage3 extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+    @Override
+    public void onResume() {
+
+        Singleton singleton = Singleton.Instance();
+        long tempNumber = singleton.currentNumberOfDays;
+        if(singleton.currentEventDaysChanged==true) {
+            for (int i = 0; i < tempNumber; i++) {
+                EventDay ev = new EventDay();
+                singleton.mEventDays.add(ev);
+            }
+            listview.setAdapter(new CreateEventPage3ListAdapter(getContext(), eventDayChildren));
+            singleton.currentEventDaysChanged=false;
+            singleton.dateStartChanged=false;
+            singleton.dateEndChanged=false;
+            numberOfChildDays=tempNumber;
+            Toast.makeText(getActivity(), "Refresh successful", Toast.LENGTH_SHORT).show();
+        }
+
+        super.onResume();
     }
 }

@@ -36,14 +36,16 @@ public class MyDatePickerDialog implements View.OnClickListener{
                 monthOfYear++;
                 String dayFormated=dayOfMonth+"|"+monthOfYear+"|"+year;
 
-
+                Singleton singleton= Singleton.Instance();
                 if(dayE==67){
                     String date ="First day:"+dayFormated;
                     localTextView.setText(date);
+                    singleton.dateStartChanged=true;
 
                 }else if(dayE==76){
                     String date ="Last day:"+dayFormated;
                     localTextView.setText(date);
+                    singleton.dateEndChanged=true;
                 }
             }
         },year,month,day);
