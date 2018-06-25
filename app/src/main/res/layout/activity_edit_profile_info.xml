@@ -4,55 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfileInfo">
+    tools:context=".welcomePackage.EditProfileInfo">
 
     <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="643dp"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        tools:layout_editor_absoluteY="8dp">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
+            android:id="@+id/editIme"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="edit name..."
             android:textAlignment="center"
-            android:id="@+id/editIme"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/editPrezime"
-            android:textAlignment="center"
             android:layout_width="match_parent"
-            android:hint="edit surname..."
             android:layout_height="40dp"
+            android:hint="edit surname..."
+            android:textAlignment="center"
             android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/editEmail"
-            android:hint="edit e-mail..."
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="edit e-mail..."
+            android:textAlignment="center"
             android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/editBroj"
-            android:hint="edit number..."
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="edit number..."
+            android:textAlignment="center"
             android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/editAdresa"
-            android:hint="edit address..."
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:hint="edit address..."
+            android:textAlignment="center"
             android:textColor="@color/white" />
 
         <Button

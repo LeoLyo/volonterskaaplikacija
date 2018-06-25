@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/gradient"
-    tools:context="com.random.anagnosti.volonterskaaplikacija.MyProfileActivity">
+    tools:context="com.random.anagnosti.volonterskaaplikacija.welcomePackage.MyProfileActivity">
 
 
     <RelativeLayout

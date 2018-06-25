@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventFragmentPage1">
+    tools:context="com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEventFragmentPage1">
 
     <AutoCompleteTextView
         android:id="@+id/editEventName"
