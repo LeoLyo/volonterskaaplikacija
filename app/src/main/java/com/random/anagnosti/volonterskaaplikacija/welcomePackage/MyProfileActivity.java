@@ -1,7 +1,10 @@
 package com.random.anagnosti.volonterskaaplikacija.welcomePackage;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -22,15 +25,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+import java.io.InputStream;
+
 public class MyProfileActivity extends AppCompatActivity {
 
 
 
-
+    public static final int PICK_IMAGE = 1;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private TextView image;
     ImageView imageView;
+    RoundImage roundedImage;
 
     TextView imeIprezime,adresa,brTelefona,email;
      String imejl="imejl";
@@ -79,11 +85,30 @@ public class MyProfileActivity extends AppCompatActivity {
     }
 
     public void addProfileImage(View view){
-        Intent intent = new Intent();
+       /* Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select EventDay Image"),101);
+        startActivityForResult(Intent.createChooser(intent,"Select EventDay Image"),101);*/
+
+        Intent i = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, PICK_IMAGE);
+
+        /*Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/*");
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/*");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+        startActivityForResult(chooserIntent, PICK_IMAGE);*/
     }
+
+
+
+
 
     public void editProfileInfo(View view)
     {
@@ -120,13 +145,18 @@ public class MyProfileActivity extends AppCompatActivity {
         loadUserInfo();
 
         Button btnCamera = (Button)findViewById(R.id.cameraButton);
-         imageView = (ImageView)findViewById(R.id.profileImage);
+        imageView = (ImageView)findViewById(R.id.profileImage);
+
+        Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.misteryman);
+        roundedImage = new RoundImage(bm);
+        imageView.setImageDrawable(roundedImage);
+
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent inte = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(inte,0);
+                startActivityForResult(inte,2);
             }
         });
 
@@ -136,7 +166,30 @@ public class MyProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==2){
         Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        imageView.setImageBitmap(bitmap);
+        roundedImage = new RoundImage(bitmap);
+        imageView.setImageDrawable(roundedImage);}
+
+        if (requestCode == PICK_IMAGE) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+            roundedImage = new RoundImage(bitmap);
+            imageView.setImageDrawable(roundedImage);
+
+
+        }
+
+       // imageView.setImageBitmap(bitmap);
     }
 }

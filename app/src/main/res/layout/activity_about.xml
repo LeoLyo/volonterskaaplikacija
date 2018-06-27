@@ -14,7 +14,7 @@
         android:layout_height="88dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="253dp"
+        android:layout_marginBottom="250dp"
         android:background="@color/colorPrimaryLight">
 
         <TextView
@@ -34,11 +34,16 @@
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="80dp"
-            android:layout_height="62dp"
-
+            android:layout_height="80dp"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/noimage2" />
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/bottom_sheet_behavior"
+            android:cropToPadding="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/misteryman">
+
+        </ImageView>
 
         <Button
             android:id="@+id/cameraButton"
@@ -54,7 +59,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/profileImage"
+            android:layout_alignStart="@+id/cameraButton"
             android:drawableTop="@drawable/slicica_24dp"
             android:onClick="addProfileImage" />
     </RelativeLayout>
