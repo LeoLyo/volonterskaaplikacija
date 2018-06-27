@@ -32,16 +32,13 @@ public class WelcomeActivity extends Activity {
         firebaseAuth = FirebaseAuth.getInstance();
         initializeAuthListener();
 
-        tempButton = findViewById(R.id.tempButton);
-        tempButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), About_Event_Activity.class);
-                startActivity(intent);
-            }
-        });
     }
 
+
+    public void radiNesto(View view){
+        Intent intent = new Intent(this, About_Event_Activity.class);
+        startActivity(intent);
+    }
 
     public void profileAction(View view)
     {
