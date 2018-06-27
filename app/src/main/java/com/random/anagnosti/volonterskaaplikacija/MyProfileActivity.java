@@ -1,6 +1,8 @@
 package com.random.anagnosti.volonterskaaplikacija;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +29,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private TextView image;
+    ImageView imageView;
 
     TextView imeIprezime,adresa,brTelefona,email;
      String imejl="imejl";
@@ -114,7 +118,24 @@ public class MyProfileActivity extends AppCompatActivity {
 
         loadUserInfo();
 
+        Button btnCamera = (Button)findViewById(R.id.cameraButton);
+         imageView = (ImageView)findViewById(R.id.profileImage);
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inte = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(inte,0);
+            }
+        });
+
+
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+        imageView.setImageBitmap(bitmap);
+    }
 }

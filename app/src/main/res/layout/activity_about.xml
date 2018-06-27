@@ -11,10 +11,10 @@
     <RelativeLayout
         android:id="@+id/imeIslika"
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="88dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="253dp"
         android:background="@color/colorPrimaryLight">
 
         <TextView
@@ -30,16 +30,33 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25dp" />
 
-        <TextView
-            android:id="@+id/addImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="80dp"
+            android:layout_height="62dp"
+
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="14dp"
-            android:onClick="addProfileImage"
-            android:text="Add Image"
-            android:textColor="#2d76b7" />
+            android:src="@drawable/noimage2" />
+
+        <Button
+            android:id="@+id/cameraButton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="80dp"
+            android:drawableTop="@drawable/kamerica_24dp" />
+
+        <Button
+            android:id="@+id/addImage"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/profileImage"
+            android:drawableTop="@drawable/slicica_24dp"
+            android:onClick="addProfileImage" />
     </RelativeLayout>
 
     <LinearLayout
@@ -48,7 +65,7 @@
         android:layout_height="190dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/imeIslika"
-        android:layout_marginTop="-250dp"
+        android:layout_marginTop="-253dp"
         android:background="@color/colorPrimaryLight"
         android:gravity="center"
         android:orientation="vertical">

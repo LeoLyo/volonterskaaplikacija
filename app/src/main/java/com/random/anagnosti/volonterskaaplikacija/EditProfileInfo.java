@@ -106,11 +106,18 @@ public class EditProfileInfo extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         DocumentReference contact = db.collection("Users").document(user.getUid());
-
-        contact.update("First name", firstName);
-        contact.update("Email", iiimejl);
-        contact.update("Address", adrr);
-        contact.update("Phone number", brr);
+        if(firstName!=null) {
+            contact.update("First name", firstName);
+        }
+        if(iiimejl!=null) {
+            contact.update("Email", iiimejl);
+        }
+        if(adrr!=null) {
+            contact.update("Address", adrr);
+        }
+        if(brr!=null) {
+            contact.update("Phone number", brr);
+        }
         contact.update("Last name", lastName)
                 .addOnSuccessListener(new OnSuccessListener < Void > () {
                     @Override
