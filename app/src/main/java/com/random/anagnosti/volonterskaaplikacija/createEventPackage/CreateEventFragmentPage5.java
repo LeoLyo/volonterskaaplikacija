@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,17 +7,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.random.anagnosti.volonterskaaplikacija.R;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CreateEventFragmentPage1.OnFragmentInteractionListener} interface
+ * {@link CreateEventFragmentPage5.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CreateEventFragmentPage1#newInstance} factory method to
+ * Use the {@link CreateEventFragmentPage5#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventFragmentPage1 extends Fragment {
+public class CreateEventFragmentPage5 extends Fragment implements Observer{
+    private static final String TAG = "CreateEventFragmentPage5";
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +35,7 @@ public class CreateEventFragmentPage1 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CreateEventFragmentPage1() {
+    public CreateEventFragmentPage5() {
         // Required empty public constructor
     }
 
@@ -39,19 +45,17 @@ public class CreateEventFragmentPage1 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateEventFragmentPage1.
+     * @return A new instance of fragment CreateEventFragmentPage5.
      */
     // TODO: Rename and change types and number of parameters
-    public static CreateEventFragmentPage1 newInstance(String param1, String param2) {
-        CreateEventFragmentPage1 fragment = new CreateEventFragmentPage1();
+    public static CreateEventFragmentPage5 newInstance(String param1, String param2) {
+        CreateEventFragmentPage5 fragment = new CreateEventFragmentPage5();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,10 +69,8 @@ public class CreateEventFragmentPage1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_createevent_page1, container, false);
+        return inflater.inflate(R.layout.fragment_createevent_page5, container, false);
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -92,6 +94,11 @@ public class CreateEventFragmentPage1 extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+
     }
 
     /**

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="com.random.anagnosti.volonterskaaplikacija.CreateEventFragmentPage2">
+    tools:context="com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEventFragmentPage2">
 
     <TextView
         android:id="@+id/textViewFirstDay"

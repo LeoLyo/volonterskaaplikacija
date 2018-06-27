@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 public class EventDay {
 

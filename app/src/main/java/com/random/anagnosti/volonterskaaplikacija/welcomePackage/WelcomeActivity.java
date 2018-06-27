@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.welcomePackage;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,13 +12,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.random.anagnosti.volonterskaaplikacija.R;
+import com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEventActivity;
 
 public class WelcomeActivity extends Activity {
 
     public static final int RC_SIGN_IN = 1;
 
-    ListView listView;
-    String[] peopleList = {"Osoba 1", "Osoba2", "Osoba3", "Osoba4"};
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -27,10 +27,6 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        listView = findViewById(R.id.listoftasks);
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.activity_listview,R.id.textView,peopleList);
-        listView.setAdapter(arrayAdapter);
 
         firebaseAuth = FirebaseAuth.getInstance();
         initializeAuthListener();
@@ -50,14 +46,6 @@ public class WelcomeActivity extends Activity {
     }
 
 
-    public void showAction(View view){
-        if(listView.getVisibility()==View.GONE) {
-            listView.setVisibility(View.VISIBLE);
-        }else if(listView.getVisibility()==View.VISIBLE){
-            listView.setVisibility(View.GONE);
-        }
-
-    }
 
     public void createEventWindow(View view){
         Intent intent = new Intent(this, CreateEventActivity.class);

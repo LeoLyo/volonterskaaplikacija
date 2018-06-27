@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.welcomePackage;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.random.anagnosti.volonterskaaplikacija.R;
 
 public class EditProfileInfo extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.welcomePackage;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.random.anagnosti.volonterskaaplikacija.R;
 
 public class MyProfileActivity extends AppCompatActivity {
 

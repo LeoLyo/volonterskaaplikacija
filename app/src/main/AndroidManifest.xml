@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".welcomePackage.WelcomeActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".CreateEventActivity">
+        <activity android:name=".welcomePackage.RegisterActivity" />
+        <activity android:name=".welcomePackage.LogInActivity" />
+        <activity android:name=".createEventPackage.CreateEventActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -37,9 +37,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key" />
 
-        <activity android:name=".MyProfileActivity" />
-        <activity android:name=".JoiningEventActivity" />
-        <activity android:name=".EditProfileInfo"></activity>
+        <activity android:name=".welcomePackage.MyProfileActivity" />
+        <activity android:name=".welcomePackage.JoiningEventActivity" />
+        <activity android:name=".welcomePackage.EditProfileInfo" />
+
     </application>
 
 </manifest>

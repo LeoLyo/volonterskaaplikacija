@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,11 +20,14 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.random.anagnosti.volonterskaaplikacija.R;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -36,7 +39,9 @@ import static android.app.Activity.RESULT_OK;
  * Use the {@link CreateEventFragmentPage2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventFragmentPage2 extends Fragment {
+public class CreateEventFragmentPage2 extends Fragment implements Observer{
+    private static final String TAG = "CreateEventFragmentPage2";
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -179,7 +184,10 @@ public class CreateEventFragmentPage2 extends Fragment {
 
                         Singleton singleton = Singleton.Instance();
                         singleton.currentNumberOfDays=dayOfEventCounter;
-
+                        if(singleton.dateStartChanged&&singleton.dateEndChanged){
+                            singleton.currentEventDaysChanged=true;
+                        }
+                        Toast.makeText(getActivity(), "Information successfully entered.", Toast.LENGTH_SHORT).show();
                         //singleton.mEventDays.remove(2);
                         //singleton.mEventDays.add(ev);
                     }
@@ -269,6 +277,11 @@ public class CreateEventFragmentPage2 extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+
     }
 
     /**

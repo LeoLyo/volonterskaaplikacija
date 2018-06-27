@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.random.anagnosti.volonterskaaplikacija.R;
 
 import java.util.ArrayList;
 

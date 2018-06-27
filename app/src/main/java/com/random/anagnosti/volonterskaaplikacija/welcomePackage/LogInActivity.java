@@ -1,4 +1,4 @@
-package com.random.anagnosti.volonterskaaplikacija;
+package com.random.anagnosti.volonterskaaplikacija.welcomePackage;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.random.anagnosti.volonterskaaplikacija.R;
 
 public class LogInActivity extends Activity {
 
