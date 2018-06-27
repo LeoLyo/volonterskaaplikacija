@@ -64,7 +64,7 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
 
 
     @Override
-    public void onBindViewHolder(final CreateEventPage4RecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(final CreateEventPage4RecyclerViewHolder holder, int position) {
 
 
         EventRole tempEventRole = eventRolesList.get(position);
@@ -77,7 +77,7 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
             public void onClick(View view) {
 
                 Singleton singleton = Singleton.Instance();
-                String tempString = singleton.mEventRoles.get(position).getAllSubordinatesInString();
+                String tempString = singleton.mEventRoles.get(holder.getAdapterPosition()).getAllSubordinatesInString();
                 Toast.makeText(recyclerContext, tempString, Toast.LENGTH_SHORT).show();
 
             }
@@ -101,7 +101,7 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
                 titleEdit = popUpDialog.findViewById(R.id.createeventchildpage4titleedit);
                 descriptionEdit = popUpDialog.findViewById(R.id.createeventchildpage4descriptionedit);
                 listOfAvailableRoles = popUpDialog.findViewById(R.id.createeventchildpage4listviewedit);
-                ArrayList<EventRole> checkedRoles = singleton.mEventRoles.get(position).getSubordinates();
+                ArrayList<EventRole> checkedRoles = singleton.mEventRoles.get(holder.getAdapterPosition()).getSubordinates();
                 for(int i=0;i<checkedRoles.size();i++){
                     for(int j=0;j<eRoleList.size();j++){
                         if(checkedRoles.get(i).getName().matches(eRoleList.get(j).getName())){
@@ -110,8 +110,8 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
                     }
                 }
                 final CreateEventPage4InnerCustomAdapter cAdapter = new CreateEventPage4InnerCustomAdapter(recyclerActivity, eRoleList);
-                titleEdit.setText(singleton.mEventRoles.get(position).getName());
-                descriptionEdit.setText(singleton.mEventRoles.get(position).getDescription());
+                titleEdit.setText(singleton.mEventRoles.get(holder.getAdapterPosition()).getName());
+                descriptionEdit.setText(singleton.mEventRoles.get(holder.getAdapterPosition()).getDescription());
                 listOfAvailableRoles.setAdapter(cAdapter);
                 if (listOfAvailableRoles.getScaleY() > 200) {
                     listOfAvailableRoles.setScaleY(200);
@@ -141,7 +141,7 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
                             Toast.makeText(recyclerContext, "Title is empty. Please enter title.", Toast.LENGTH_SHORT).show();
                         } else {
                             boolean ifExists = false;
-                            if(!titleCheck.matches(singleton.mEventRoles.get(position).getName())){
+                            if(!titleCheck.matches(singleton.mEventRoles.get(holder.getAdapterPosition()).getName())){
                                 for (int i = 0; i < eRoleList.size(); i++) {
                                     if (titleCheck.matches(eRoleList.get(i).getName())) {
                                         ifExists = true;
@@ -160,9 +160,9 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
                                         selectedSubs.add(eRoleList.get(j));
                                     }
                                 }
-                                singleton.mEventRoles.get(position).setName(titleCheck);
-                                singleton.mEventRoles.get(position).setDescription(descriptionEdit.getText().toString());
-                                singleton.mEventRoles.get(position).setSubordinates(selectedSubs);
+                                singleton.mEventRoles.get(holder.getAdapterPosition()).setName(titleCheck);
+                                singleton.mEventRoles.get(holder.getAdapterPosition()).setDescription(descriptionEdit.getText().toString());
+                                singleton.mEventRoles.get(holder.getAdapterPosition()).setSubordinates(selectedSubs);
 
                                 recyclerView=recyclerActivity.findViewById(R.id.createEventPage4RecyclerView);
                                 rLayoutManager = new LinearLayoutManager(recyclerActivity);
@@ -193,14 +193,14 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
                 removeButton=popUpDialog.findViewById(R.id.createeventchildpage4removebutton);
                 messageText=popUpDialog.findViewById(R.id.createeventchildpage4removemessage);
                 roleTV=popUpDialog.findViewById(R.id.createeventchildpage4removeroleview);
-                roleTV.setText(singleton.mEventRoles.get(position).getName());
+                roleTV.setText(singleton.mEventRoles.get(holder.getAdapterPosition()).getName());
                 String message="Are you sure you want to remove the following role?";
                 messageText.setText(message);
                 removeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        EventRole removedRole = singleton.mEventRoles.get(position);
-                        singleton.mEventRoles.remove(position);
+                        EventRole removedRole = singleton.mEventRoles.get(holder.getAdapterPosition());
+                        singleton.mEventRoles.remove(holder.getAdapterPosition());
                         for(int i=0;i<singleton.mEventRoles.size();i++){
                             for(int j=0;j<singleton.mEventRoles.get(i).getSubordinates().size();j++){
                                 if (singleton.mEventRoles.get(i).getSubordinates().get(j).equals(removedRole)){
@@ -209,6 +209,7 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
                             }
                         }
                         eRoleList=singleton.mEventRoles;
+
                         recyclerView=recyclerActivity.findViewById(R.id.createEventPage4RecyclerView);
                         rLayoutManager = new LinearLayoutManager(recyclerActivity);
                         recyclerView.setLayoutManager(rLayoutManager);

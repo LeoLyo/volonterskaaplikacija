@@ -40,7 +40,7 @@
         <activity android:name=".welcomePackage.MyProfileActivity" />
         <activity android:name=".welcomePackage.JoiningEventActivity" />
         <activity android:name=".welcomePackage.EditProfileInfo" />
-
+        <activity android:name=".welcomePackage.About_Event_Activity"></activity>
     </application>
 
 </manifest>

@@ -7,15 +7,24 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
 
 public class CreateEventActivity extends AppCompatActivity implements CreateEventFragmentPage1.OnFragmentInteractionListener,CreateEventFragmentPage2.OnFragmentInteractionListener,CreateEventFragmentPage3.OnFragmentInteractionListener,CreateEventFragmentPage4.OnFragmentInteractionListener,CreateEventFragmentPage5.OnFragmentInteractionListener{
 
     private static final String TAG = "CreateEventActivity";
+
     Singleton singleton = Singleton.Instance();
     SectionsPagerAdapter mSectionsPagerAdapter;
+    ImageView doneCreatingEventIcon;
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +64,21 @@ public class CreateEventActivity extends AppCompatActivity implements CreateEven
             }
         });
 
-
+        doneCreatingEventIcon=findViewById(R.id.doneCreatingEventIcon);
+        doneCreatingEventIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean everythingOk=true;
+                for(int i=0;i<singleton.somethingDoneInEveryPart.size();i++){
+                    if(!singleton.somethingDoneInEveryPart.get(i)){
+                        everythingOk=false;
+                    }
+                }
+                if(everythingOk){
+                    uploadAndCreateEvent();
+                }
+            }
+        });
 
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,4 +100,21 @@ public class CreateEventActivity extends AppCompatActivity implements CreateEven
     private void updateFragments(){
         mSectionsPagerAdapter.updateFragments();
     }
+
+    private void uploadAndCreateEvent(){
+        //Upload Part1
+
+        //Upload Part2
+
+        //Upload Part3
+
+        //Upload Part4
+
+        //Upload Part5
+
+        //Upload Part6
+
+    }
+
+
 }

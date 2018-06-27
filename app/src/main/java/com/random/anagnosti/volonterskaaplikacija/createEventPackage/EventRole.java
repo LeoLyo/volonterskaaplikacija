@@ -97,4 +97,9 @@ public class EventRole {
     public void setObligations(ArrayList<EventRoleObligation> obligations) {
         this.obligations = obligations;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -8,7 +8,7 @@
     tools:context="com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEventFragmentPage1">
 
     <AutoCompleteTextView
-        android:id="@+id/editEventName"
+        android:id="@+id/createEventFragment1EditEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -16,6 +16,7 @@
         android:layout_marginTop="128dp"
         android:ems="10"
         android:hint="Event name"
+        android:inputType="textCapWords|textAutoCorrect"
         android:singleLine="true"
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +25,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editOrganiser"
+        android:id="@+id/createEventFragment1EditOrganiser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editEventName"
+        android:layout_below="@+id/createEventFragment1EditEventName"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Organiser"
@@ -38,22 +39,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editEventName" />
+        app:layout_constraintTop_toBottomOf="@+id/createEventFragment1EditEventName" />
 
     <EditText
-        android:id="@+id/editTextDescriptionOfEvent"
+        android:id="@+id/createEventFragment1EditDescriptionOfEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Description of event"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textCapSentences|textAutoCorrect"
         android:singleLine="false"
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editOrganiser" />
+        app:layout_constraintTop_toBottomOf="@+id/createEventFragment1EditOrganiser" />
+
+    <Button
+        android:id="@+id/createEventFragment1ConfirmInputsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createEventFragment1EditDescriptionOfEvent"
+        tools:text="Confirm inputs" />
 
 
 </android.support.constraint.ConstraintLayout>

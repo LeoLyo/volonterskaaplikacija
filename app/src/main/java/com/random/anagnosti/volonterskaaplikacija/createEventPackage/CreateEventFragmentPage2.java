@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -160,44 +161,53 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
 
             @Override
             public void onClick(View view) {
+
                 firstDayDateArray= createEventFirstDay.getText().toString();
                 lastDayDateArray=createEventLastDay.getText().toString();
-
                 String[] firstSplit = firstDayDateArray.split(":");
                 String[] lastSplit = lastDayDateArray.split(":");
-                firstDayDateArray=firstSplit[1];
-                lastDayDateArray=lastSplit[1];
+                if(firstSplit.length==1){
+                    Toast.makeText(getContext(), "Please select first day of event.", Toast.LENGTH_SHORT).show();
+                }else if(lastSplit.length==1){
+                    Toast.makeText(getContext(), "Please select last day of event.", Toast.LENGTH_SHORT).show();
+                }else {
 
-                long diff = -1;
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd|MM|yyyy");
-                try {
-                    Date dateStart = simpleDateFormat.parse(firstDayDateArray);
-                    Date dateEnd = simpleDateFormat.parse(lastDayDateArray);
-                    //time is always 00:00:00 so rounding should help to ignore missing hour when going from winter to summer time as well as the extra hour in the other direction
-                    diff = Math.round((dateEnd.getTime() - dateStart.getTime()) / (double) 86400000);
-                    diff++;
-                    dayOfEventCounter=diff;
-                    if(dayOfEventCounter<0){
-                        dayOfEventCounter=-1;
-                        Toast.makeText(getActivity(), "Invalid dates: please make sure the last day is after the first day of the event.", Toast.LENGTH_SHORT).show();
-                    }else{
 
-                        Singleton singleton = Singleton.Instance();
-                        singleton.currentNumberOfDays=dayOfEventCounter;
-                        if(singleton.dateStartChanged&&singleton.dateEndChanged){
-                            singleton.currentEventDaysChanged=true;
+                    firstDayDateArray = firstSplit[1];
+                    lastDayDateArray = lastSplit[1];
+
+                    long diff = -1;
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd|MM|yyyy");
+                    try {
+                        Date dateStart = simpleDateFormat.parse(firstDayDateArray);
+                        Date dateEnd = simpleDateFormat.parse(lastDayDateArray);
+                        //time is always 00:00:00 so rounding should help to ignore missing hour when going from winter to summer time as well as the extra hour in the other direction
+                        diff = Math.round((dateEnd.getTime() - dateStart.getTime()) / (double) 86400000);
+                        diff++;
+                        dayOfEventCounter = diff;
+                        if (dayOfEventCounter < 0) {
+                            dayOfEventCounter = -1;
+                            Toast.makeText(getActivity(), "Invalid dates: please make sure the last day is after the first day of the event.", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            Singleton singleton = Singleton.Instance();
+                            singleton.currentNumberOfDays = dayOfEventCounter;
+                            if (singleton.dateStartChanged && singleton.dateEndChanged) {
+                                singleton.currentEventDaysChanged = true;
+                            }
+                            Toast.makeText(getActivity(), "Information successfully entered.", Toast.LENGTH_SHORT).show();
+                            //singleton.mEventDays.remove(2);
+                            //singleton.mEventDays.add(ev);
                         }
-                        Toast.makeText(getActivity(), "Information successfully entered.", Toast.LENGTH_SHORT).show();
-                        //singleton.mEventDays.remove(2);
-                        //singleton.mEventDays.add(ev);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
 
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
 
-
-
+                Singleton singleton = Singleton.Instance();
+                Toast.makeText(getContext(), singleton.eventName+" | "+singleton.organiserName+" | "+singleton.descriptionOfEvent, Toast.LENGTH_SHORT).show();
                 //Ovo je kod za fragment
 /*
 
@@ -240,7 +250,8 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(),uriEventImage);
-                //setImageBitmap(bitmap);
+                createEventImageView.setText(uriEventImage.toString());
+                eventImageView.setImageBitmap(bitmap);
 
 
             } catch (IOException e) {

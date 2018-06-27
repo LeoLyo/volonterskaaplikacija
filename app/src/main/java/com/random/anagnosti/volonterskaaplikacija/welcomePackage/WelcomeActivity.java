@@ -19,6 +19,7 @@ public class WelcomeActivity extends Activity {
 
     public static final int RC_SIGN_IN = 1;
 
+    Button tempButton;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -30,6 +31,15 @@ public class WelcomeActivity extends Activity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         initializeAuthListener();
+
+        tempButton = findViewById(R.id.tempButton);
+        tempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), About_Event_Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

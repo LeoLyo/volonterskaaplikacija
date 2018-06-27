@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.random.anagnosti.volonterskaaplikacija.R;
 
@@ -28,6 +31,9 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private EditText eventName, eventOrganiser, eventDescription;
+    private Button confirmInputs;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -72,7 +78,26 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_createevent_page1, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_createevent_page1, container, false);
+
+        eventName = rootView.findViewById(R.id.createEventFragment1EditEventName);
+        eventOrganiser = rootView.findViewById(R.id.createEventFragment1EditOrganiser);
+        eventDescription = rootView.findViewById(R.id.createEventFragment1EditDescriptionOfEvent);
+        confirmInputs = rootView.findViewById(R.id.createEventFragment1ConfirmInputsButton);
+        confirmInputs.setText("Confirm Inputs");
+
+        confirmInputs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertIntoSingleton();
+                Toast.makeText(getActivity(), "Information successfully entered.", Toast.LENGTH_SHORT).show();
+                eventName.setSelected(false);
+                eventOrganiser.setSelected(false);
+                eventDescription.setSelected(false);
+            }
+        });
+
+        return rootView;
     }
 
 
@@ -98,6 +123,13 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void insertIntoSingleton(){
+        Singleton singleton = Singleton.Instance();
+        singleton.eventName=eventName.getText().toString();
+        singleton.organiserName=eventOrganiser.getText().toString();
+        singleton.descriptionOfEvent=eventDescription.getText().toString();
     }
 
     @Override
