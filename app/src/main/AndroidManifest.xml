@@ -41,7 +41,6 @@
         <activity android:name=".welcomePackage.JoiningEventActivity" />
         <activity android:name=".welcomePackage.EditProfileInfo" />
         <activity android:name=".welcomePackage.About_Event_Activity" />
-        <activity android:name=".welcomePackage.Pomocna"></activity>
     </application>
 
 </manifest>

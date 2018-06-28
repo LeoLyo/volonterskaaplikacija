@@ -190,6 +190,7 @@ public class CreateEventFragmentPage4 extends Fragment implements Observer {
                 });
                 Objects.requireNonNull(popUpDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 popUpDialog.show();
+                singleton.somethingDoneInEveryPart[3]=true;
             }
         });
 

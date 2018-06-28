@@ -130,6 +130,7 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
         singleton.eventName=eventName.getText().toString();
         singleton.organiserName=eventOrganiser.getText().toString();
         singleton.descriptionOfEvent=eventDescription.getText().toString();
+        singleton.somethingDoneInEveryPart[0]=true;
     }
 
     @Override

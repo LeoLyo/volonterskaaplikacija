@@ -80,13 +80,13 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
         final int holdersPosition = holder.getAdapterPosition();
 
         final PopupMenu popupMenu = new PopupMenu(mActivity,holder.moreOptionsImageView);
+        popupMenu.getMenuInflater().inflate(R.menu.create_event_page_5_more_menu, popupMenu.getMenu());
 
         holder.moreOptionsImageView.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
-                popupMenu.getMenuInflater().inflate(R.menu.create_event_page_5_more_menu, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
@@ -167,29 +167,19 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
                                         Toast.makeText(mContext, "Email is empty. Please enter an email.", Toast.LENGTH_SHORT).show();
                                     }else if(!isEmailValid(emailCheck)){
                                         Toast.makeText(mContext, "Please enter a valid email.", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        boolean ifExists = false;
-                                        for (int i = 0; i < singleton.mUsedEmails.size(); i++) {
-                                            if (emailCheck.matches(singleton.mUsedEmails.get(i))) {
-                                                ifExists = true;
-                                                break;
-                                            }
-                                        }
-                                        if (ifExists) {
-                                            Toast.makeText(mContext, "This email has already been entered in the list of people.", Toast.LENGTH_SHORT).show();
-                                        }else{
-                                            singleton.mEventPeople.get(holdersPosition).setEmail(emailCheck);
-                                            singleton.mEventPeople.get(holdersPosition).setRoleOfIndividual((EventRole)editRoleSpinner.getSelectedItem());
-                                            singleton.mEventPeople.get(holdersPosition).setParentOfIndividual((EventPerson)editParentSpinner.getSelectedItem());
+                                    }else {
+                                        singleton.mEventPeople.get(holdersPosition).setEmail(emailCheck);
+                                        singleton.mEventPeople.get(holdersPosition).setRoleOfIndividual((EventRole) editRoleSpinner.getSelectedItem());
+                                        singleton.mEventPeople.get(holdersPosition).setParentOfIndividual((EventPerson) editParentSpinner.getSelectedItem());
 
-                                            bloodyRecyclerView = mActivity.findViewById(R.id.createEventPage5RecyclerView);
-                                            rLayoutManager = new LinearLayoutManager(mActivity);
-                                            bloodyRecyclerView.setLayoutManager(rLayoutManager);
-                                            eRoleAdapter = new CreateEventPage5RecyclerAdapter(mActivity,mContext,mEventPeople);
-                                            bloodyRecyclerView.setAdapter(eRoleAdapter);
-                                            popUpDialog.dismiss();
+                                        bloodyRecyclerView = mActivity.findViewById(R.id.createEventPage5RecyclerView);
+                                        rLayoutManager = new LinearLayoutManager(mActivity);
+                                        bloodyRecyclerView.setLayoutManager(rLayoutManager);
+                                        eRoleAdapter = new CreateEventPage5RecyclerAdapter(mActivity, mContext, mEventPeople);
+                                        bloodyRecyclerView.setAdapter(eRoleAdapter);
+                                        popUpDialog.dismiss();
 
-                                        }
+
                                     }
 
                                 }
@@ -233,7 +223,9 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
                             popUpDialog.show();
                         }
                         return true;
+
                     }
+
                 });
                 popupMenu.show();
             }

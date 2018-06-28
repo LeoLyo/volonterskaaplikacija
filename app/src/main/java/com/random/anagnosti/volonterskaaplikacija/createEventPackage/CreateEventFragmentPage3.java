@@ -33,6 +33,7 @@ public class CreateEventFragmentPage3 extends Fragment implements Observer{
     private ArrayList<EventDay> eventDayChildren=new ArrayList<>();
 
 
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -84,10 +85,30 @@ public class CreateEventFragmentPage3 extends Fragment implements Observer{
         View rootView = inflater.inflate(R.layout.fragment_createevent_page3,container,false);
         Button confirmButton = (Button)rootView.findViewById(R.id.createeventpage3buttonConfirm);
 
-        Singleton singleton = Singleton.Instance();
+        final Singleton singleton = Singleton.Instance();
         eventDayChildren=singleton.mEventDays;
         listview = (ListView) rootView.findViewById(R.id.createeventpage3listview);
-        listview.setAdapter(new CreateEventPage3ListAdapter(getContext(),eventDayChildren ));
+        listview.setAdapter(new CreateEventPage3ListAdapter(getContext(),eventDayChildren));
+
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean check=true;
+                for(int i=0;i<eventDayChildren.size();i++){
+                    if(!eventDayChildren.get(i).isFilled()){
+                        check=false;
+                        break;
+                    }
+                }
+                if(check){
+                    Toast.makeText(getContext(), "All days entered successfully!", Toast.LENGTH_SHORT).show();
+                    singleton.somethingDoneInEveryPart[2]=true;
+                }else{
+                    Toast.makeText(getContext(), "Some days haven't been filled. Please fill all days.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return rootView;
 
     }

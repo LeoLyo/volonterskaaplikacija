@@ -21,11 +21,13 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.firebase.firestore.GeoPoint;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
@@ -195,7 +197,19 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
                             if (singleton.dateStartChanged && singleton.dateEndChanged) {
                                 singleton.currentEventDaysChanged = true;
                             }
+
+                            Calendar calS = Calendar.getInstance();
+                            calS.setTime(dateStart);
+
+                            Calendar calE = Calendar.getInstance();
+                            calE.setTime(dateEnd);
+
+                            while(!calS.after(calE)){
+                                singleton.dates.add(calS.getTime());
+                                calS.add(Calendar.DATE,1);
+                            }
                             Toast.makeText(getActivity(), "Information successfully entered.", Toast.LENGTH_SHORT).show();
+
                             //singleton.mEventDays.remove(2);
                             //singleton.mEventDays.add(ev);
                         }
@@ -207,7 +221,9 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
                 }
 
                 Singleton singleton = Singleton.Instance();
-                Toast.makeText(getContext(), singleton.eventName+" | "+singleton.organiserName+" | "+singleton.descriptionOfEvent, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), singleton.eventName+" | "+singleton.organiserName+" | "+singleton.descriptionOfEvent, Toast.LENGTH_SHORT).show();
+                singleton.somethingDoneInEveryPart[1]=true;
+
                 //Ovo je kod za fragment
 /*
 
@@ -224,7 +240,6 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
                 Toast.makeText(getActivity(), "EndDate: "+lastDayDateArray, Toast.LENGTH_SHORT).show();
                 Toast.makeText(getActivity(), "EventDay No. of days: "+dayOfEventCounter, Toast.LENGTH_SHORT).show();*/
 
-
             }
         });
         return rootView;
@@ -235,13 +250,18 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode==PLACE_PICKER_REQUEST){
             if(resultCode==RESULT_OK){
+                Singleton singleton = Singleton.Instance();
                 Place place = PlacePicker.getPlace(this.getContext(),data);
                 String locationAddress = String.format("Location address: %s",place.getAddress());
                //Toast.makeText(this.getContext(), "LOCATIONADDRESS: "+locationAddress, Toast.LENGTH_SHORT).show();
                 String locationName = String.format("Location name: %s",place.getName());
                //Toast.makeText(this.getContext(), "LOCATIONNAME: "+locationName, Toast.LENGTH_SHORT).show();
                 String combined = locationName+System.getProperty("line.separator")+locationAddress;
+                singleton.locationCoordinates=new GeoPoint(place.getLatLng().latitude,place.getLatLng().longitude);
+                singleton.locationAddress=place.getAddress().toString();
+                singleton.locationName=place.getName().toString();
                 createEventLocation.setText(combined);
+
                 //Toast.makeText(this.getContext(),"LOCATIONTESTING: "+ combined, Toast.LENGTH_SHORT).show();
             }
         }
@@ -250,7 +270,7 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(),uriEventImage);
-                createEventImageView.setText(uriEventImage.toString());
+
                 eventImageView.setImageBitmap(bitmap);
 
 

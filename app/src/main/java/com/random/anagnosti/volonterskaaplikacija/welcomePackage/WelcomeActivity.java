@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.random.anagnosti.volonterskaaplikacija.R;
 import com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEventActivity;
+import com.random.anagnosti.volonterskaaplikacija.createEventPackage.Singleton;
 
 public class WelcomeActivity extends Activity {
 
@@ -55,6 +56,8 @@ public class WelcomeActivity extends Activity {
 
 
     public void createEventWindow(View view){
+        Singleton singleton= Singleton.Instance();
+        singleton.destroyS();
         Intent intent = new Intent(this, CreateEventActivity.class);
         startActivity(intent);
     }

@@ -191,6 +191,7 @@ public class CreateEventFragmentPage5 extends Fragment implements Observer{
                                 Toast.makeText(getContext(), "Number of people: "+allThePeople.size(), Toast.LENGTH_SHORT).show();
                                 eRoleAdapter = new CreateEventPage5RecyclerAdapter(getActivity(), getContext(), allThePeople);
                                 recyclerView.setAdapter(eRoleAdapter);
+
                                 popUpDialog.dismiss();
                             }
                         }
@@ -199,6 +200,7 @@ public class CreateEventFragmentPage5 extends Fragment implements Observer{
                 });
                 Objects.requireNonNull(popUpDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 popUpDialog.show();
+                singleton.somethingDoneInEveryPart[4]=true;
             }
         });
 
