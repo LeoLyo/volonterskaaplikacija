@@ -19,12 +19,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.random.anagnosti.volonterskaaplikacija.R;
 import com.random.anagnosti.volonterskaaplikacija.welcomePackage.WelcomeActivity;
 
@@ -161,11 +166,40 @@ public class CreateEventActivity extends AppCompatActivity implements CreateEven
 
         db.collection("events").add(event).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
+            public void onSuccess(final DocumentReference documentReference) {
                 Log.d(TAG,"Event successfully added! "+documentReference.getId());
 
-                String eventId=documentReference.getId();
+                final String eventId=documentReference.getId();
 
+                //Adding event picture to storage
+                StorageReference eventImageRef = FirebaseStorage.getInstance().getReference("eventpics/"+eventId+System.currentTimeMillis()+".jpg");
+                if(singleton.uriEventImage!=null){
+                    eventImageRef.putFile(singleton.uriEventImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            String eventImageUrl = taskSnapshot.getDownloadUrl().toString();
+                            DocumentReference thisEvent = db.collection("events").document(eventId);
+                            thisEvent.update("event image url",eventImageUrl).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "Event picture successfully updated!");
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error updating event picture", e);
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(CreateEventActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 //Adding days to event
 
                 for(int i=0;i<singleton.mEventDays.size();i++){

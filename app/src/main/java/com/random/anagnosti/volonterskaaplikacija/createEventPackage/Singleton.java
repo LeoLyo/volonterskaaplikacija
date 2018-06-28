@@ -1,6 +1,8 @@
 package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.ContactsContract;
 
 import com.google.firebase.firestore.GeoPoint;
 
@@ -18,6 +20,7 @@ public class Singleton {
     public ArrayList<String> mUsedEmails;
     public boolean[] somethingDoneInEveryPart;
     public Bitmap eventImageBitmap;
+    public Uri uriEventImage;
     public long currentNumberOfDays;
     public boolean currentEventDaysChanged;
     public boolean dateStartChanged;

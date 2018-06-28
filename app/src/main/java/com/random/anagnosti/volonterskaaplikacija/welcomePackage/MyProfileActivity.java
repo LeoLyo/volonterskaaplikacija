@@ -172,20 +172,19 @@ public class MyProfileActivity extends AppCompatActivity {
         imageView.setImageDrawable(roundedImage);}
 
         if (requestCode == PICK_IMAGE) {
+
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
+            Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
             cursor.moveToFirst();
-
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
-            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+           /* Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
             roundedImage = new RoundImage(bitmap);
-            imageView.setImageDrawable(roundedImage);
+            imageView.setImageDrawable(roundedImage);*/
 
 
         }

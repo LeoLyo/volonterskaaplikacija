@@ -270,9 +270,9 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(),uriEventImage);
-
                 eventImageView.setImageBitmap(bitmap);
-
+                Singleton singleton = Singleton.Instance();
+                singleton.uriEventImage=uriEventImage;
 
             } catch (IOException e) {
                 e.printStackTrace();

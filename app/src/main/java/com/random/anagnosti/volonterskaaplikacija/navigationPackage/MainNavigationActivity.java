@@ -21,7 +21,7 @@ import com.random.anagnosti.volonterskaaplikacija.R;
 public class MainNavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     private TextView eventTitle;
-
+    private String eventId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +46,8 @@ public class MainNavigationActivity extends AppCompatActivity implements Navigat
         }
 
 
-       String eventId = getIntent().getStringExtra("EXTRA_EVENT_ID");
-       //String eventId = "1FlSWkk9aD8j29vfnHgz";
+        eventId = getIntent().getStringExtra("EXTRA_EVENT_ID");
+        //String eventId = "1FlSWkk9aD8j29vfnHgz";
         eventTitle = findViewById(R.id.activity_navigation_textView);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("events").document(eventId);
@@ -90,6 +90,15 @@ public class MainNavigationActivity extends AppCompatActivity implements Navigat
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     @Override
