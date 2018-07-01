@@ -124,7 +124,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
 
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/newworkspace" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -145,6 +151,7 @@
         app:layout_constraintEnd_toEndOf="@+id/crvena"
         app:layout_constraintStart_toStartOf="@+id/crvena" />
 
+
     <TextView
         android:id="@+id/textAbout"
         android:layout_width="100dp"
@@ -155,7 +162,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="My Profile"
+        android:text="My profile"
         android:textColor="#ffff"
         app:layout_constraintEnd_toEndOf="@+id/zelena"
         app:layout_constraintStart_toStartOf="@+id/zelena"
@@ -176,6 +183,22 @@
         app:layout_constraintEnd_toEndOf="@+id/plava"
         app:layout_constraintStart_toStartOf="@+id/plava"
         app:layout_constraintTop_toBottomOf="@+id/plava" />
+
+    <TextView
+        android:id="@+id/newPerspective"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/khaki"
+        android:layout_below="@+id/zelena"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="New perspective"
+        android:textColor="#ffff"
+        app:layout_constraintEnd_toEndOf="@+id/khaki"
+        app:layout_constraintStart_toStartOf="@+id/khaki"
+        app:layout_constraintTop_toBottomOf="@+id/khaki" />
 
     <Button
         android:id="@+id/showItems"

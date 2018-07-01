@@ -10,25 +10,35 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.random.anagnosti.volonterskaaplikacija.R;
+import com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEventActivity;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public class MyProfileActivity extends AppCompatActivity {
-
+private String TAG ="MyProfileActivityTag";
 
 
     public static final int PICK_IMAGE = 1;
@@ -166,29 +176,76 @@ public class MyProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==2){
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        roundedImage = new RoundImage(bitmap);
-        imageView.setImageDrawable(roundedImage);}
+        if(requestCode==2) {
+
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            roundedImage = new RoundImage(bitmap);
+            imageView.setImageDrawable(roundedImage);
+        }
 
         if (requestCode == PICK_IMAGE) {
 
             Uri selectedImage = data.getData();
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(MyProfileActivity.this.getContentResolver(), selectedImage);
+                roundedImage = new RoundImage(bitmap);
+                imageView.setImageDrawable(roundedImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            /*
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
             Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));*/
+
+
 
            /* Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
             roundedImage = new RoundImage(bitmap);
             imageView.setImageDrawable(roundedImage);*/
 
 
-        }
+            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String email = "";
+            if (user != null) {
+                email = user.getEmail();
+            }
+            {
+                Log.d(TAG, "An unexpected error occurred: the user suddenly does not exist.");
+            }
+            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+            StorageReference profileImageRef = FirebaseStorage.getInstance().getReference("userpics/" + user.getUid() + "/" + email + "profilepicture" + ".jpg");
+            profileImageRef.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    String profileImageUrl = taskSnapshot.getDownloadUrl().toString();
+                    DocumentReference thisEvent = db.collection("Users").document(user.getUid());
+                    thisEvent.update("profile image url",profileImageUrl).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Profile picture successfully updated!");
 
-       // imageView.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating profile picture", e);
+
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MyProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        // imageView.setImageBitmap(bitmap);
     }
 }
