@@ -12,6 +12,9 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 
+/**
+ * Klasa koja sluzi za zaokruzivanje slike.
+ */
     public class RoundImage extends Drawable {
         private final Bitmap mBitmap;
         private final Paint mPaint;
@@ -19,6 +22,9 @@ import android.graphics.drawable.Drawable;
         private final int mBitmapWidth;
         private final int mBitmapHeight;
 
+    /**
+     * Konstruktor za kreiranje kruga od slike.
+     */
         public RoundImage(Bitmap bitmap) {
             mBitmap = bitmap;
             mRectF = new RectF();
@@ -32,17 +38,26 @@ import android.graphics.drawable.Drawable;
             mBitmapHeight = mBitmap.getHeight();
         }
 
+    /**
+     * Crta se krug.
+     */
         @Override
         public void draw(Canvas canvas) {
             canvas.drawOval(mRectF, mPaint);
         }
 
+    /**
+     * Nap romenu granica se granice usklade.
+     */
         @Override
         protected void onBoundsChange(Rect bounds) {
             super.onBoundsChange(bounds);
             mRectF.set(bounds);
         }
 
+    /**
+     * Podseavanje alfe slike.
+     */
         @Override
         public void setAlpha(int alpha) {
             if (mPaint.getAlpha() != alpha) {

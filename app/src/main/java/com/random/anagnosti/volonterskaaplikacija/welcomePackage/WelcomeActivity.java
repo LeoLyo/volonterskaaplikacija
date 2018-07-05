@@ -36,6 +36,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Pocetni ekran koji korisnik vidi kada udje u aplikaciju ulogovan. U slucaju da nije ulogovan, preusmeren je na Login ekran. Na ekranu se nalaze cetiri dugmeta, svako sa svojim
+ * preusmeravanjem na odredjen deo aplikacije: jedno za kreiranje eventa, drugo za pregled sopstvenog profila, trece na pregled event-ova i cetvrto za unosenje koda i preuzimanje event-a.
+ */
 public class WelcomeActivity extends Activity {
 
     public static final int RC_SIGN_IN = 1;
@@ -47,6 +51,11 @@ public class WelcomeActivity extends Activity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
+    /**
+     * Nakon uspesnog referenciranja svih vizuelnih elemenata View-a, svako dugme preusmeruje na odredjen deo aplikacije:jedno za kreiranje eventa, drugo za pregled sopstvenog profila,
+     * trece na pregled event-ova i cetvrto za unosenje koda i preuzimanje event-a. U slucaju odabira dugmeta za odabir Event-a, prikazuje se popUpDialog koji prikazuje spinner sa listom
+     * svih event-ova koje korisnik moze izabrati za odlazak u perspektivu Event-a za odaberen Event.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,23 +150,35 @@ public class WelcomeActivity extends Activity {
     }
 
 
+    /**
+     * Pokusaj prelaska u okruzenje za prikaz mape. Prebaceno u AboutEventFragment paketa navigationPackage.
+     */
     public void radiNesto(View view){
         Intent intent = new Intent(this, About_Event_Activity.class);
         startActivity(intent);
     }
 
+    /**
+     * Prelazak u MyProfile deo aplikacije.
+     */
     public void profileAction(View view)
     {
         Intent intent = new Intent(this, MyProfileActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Prelazak u JoinEvent deo aplikacije.
+     */
     public void joinEvent(View view)
     {
         Intent intent = new Intent(this, JoiningEventActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Prelazak u CreateEvent deo aplikacije. Singleton se resetuje pri ulasku u ovo okruzenje.
+     */
     public void createEventWindow(View view){
         Singleton singleton= Singleton.Instance();
         singleton.destroyS();
@@ -165,6 +186,10 @@ public class WelcomeActivity extends Activity {
         startActivity(intent);
     }
 
+    /**
+     * Inicijalizuje se authentication listener baze. U slucaju da nije null, dugme postaje logout dugme. Na klik dugmeta, korisnik se izloguje. Ako korisnik nije ulogovan, preusmeruje
+     * se na LogInActivity, gde se moze ulogovati u aplikaciju.
+     */
     //    LIESTENER ZA LOGINOVANJE
     private void initializeAuthListener(){
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -193,18 +218,27 @@ public class WelcomeActivity extends Activity {
         };
     }
 
+    /**
+     * Na resume se dodaje firebase authentication addAuthStateListener.
+     */
     @Override
     protected void onResume() {
         super.onResume();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
 
+    /**
+     * Na pause se uklanja firebase authentication removeAuthStateListener.
+     */
     @Override
     protected void onPause() {
         super.onPause();
         firebaseAuth.removeAuthStateListener(authStateListener);
     }
 
+    /**
+     * Na povratak sa Login Activity-ja, ispise se Signed in u slucaju uspesnog SingIn-ovanja, kao i Sign in canceled u slucaju neuspesnog.
+     */
     //    OKIDA SE KAD LOGIN VRATI SA LOG IN ACTIVITY
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

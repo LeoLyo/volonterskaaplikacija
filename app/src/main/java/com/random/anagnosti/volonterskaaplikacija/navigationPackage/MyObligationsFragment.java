@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Klasa koja jos nije implementovana. Sluzice prikazivanju liste obligacija korisnika, aktivnih, zavrsenih i onih koje jos nisu bile preuzete..
+ */
 public class MyObligationsFragment extends Fragment {
 
     @Nullable

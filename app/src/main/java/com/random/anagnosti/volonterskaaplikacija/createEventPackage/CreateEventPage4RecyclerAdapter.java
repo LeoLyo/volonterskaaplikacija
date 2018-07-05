@@ -27,6 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Adapter za RecyclerView cetvrtog fragmenta CreateEvent dela aplikacije. Ovde se obavlja postavljanje tekstova u korektne vizuelne elemente CardView-a, ali i omogucavanje brisanje uloge,
+ * kao i omogucavanje editovanja svake pojedinacne uloge.
+ */
 public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<CreateEventPage4RecyclerAdapter.CreateEventPage4RecyclerViewHolder> {
 
     private Context recyclerContext;
@@ -45,14 +49,18 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
     //private static LayoutInflater inflater = null;
 
 
-
-
+    /**
+     * Konstruktor koji preuzima Activity, kontekst i listu svih uloga.
+     */
     public CreateEventPage4RecyclerAdapter(Activity activity, Context context, ArrayList<EventRole> eventRoles) {
         this.recyclerActivity = activity;
         this.recyclerContext = context;
         this.eventRolesList = eventRoles;
     }
 
+    /**
+     * Pri kreiranju se postavlja odgovarajuc layout za View. Takodje se kreira odgovarajuc ViewHolder.
+     */
     @Override
     public CreateEventPage4RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -63,6 +71,14 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
     }
 
 
+    /**
+     * Nakon referenciranja odgovarajucih vizuelnih elemenata ovog fragmenta, osposobljava se editovanje. Na odabir editovanja ovog elementa liste, to jest ove uloge, otvara se isti
+     * popUpDialog prozor kao sto je za kreiranje uloge, samo sto su polja vec popunjena podacima ove uloge: naslovom, opcionim opisom i listom izabranih i mogucih sledbenika. Nakon
+     * izvrsenih izmena, pritiskom na confirm se podaci u listi, kao i u Singleton-u zamene novim i osvezi se vizuelno stanje RecyclerView-a na fragmentu, te se odmah pojave nove
+     * informacije u CardView-u. Takodje je omoguceno brisanje na DELETE tako sto se dugo drzi pritisnut CardView. Nakon dugog drzanja prsta na CardView te uloge koju korisnik zeli
+     * ukloniti, izlazi popUpDialog sa pitanjem da li su sigurni da je zele obrisati. Pritiskom na dugme se potvrdjuje brisanje, te se iz liste i iz Singleton-a uklanja ova uloga,
+     * takodje i iz svih uloga koje s u stavile ovu ulogu kao jednog od svojih sledbenika.
+     */
     @Override
     public void onBindViewHolder(final CreateEventPage4RecyclerViewHolder holder, int position) {
 
@@ -227,6 +243,9 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
     }
 
 
+    /**
+     * Metoda koja se bavi setovanjem stikliranog statusa svake uloge iz liste u false.
+     */
     private void refreshRoleList(ArrayList<EventRole> roleListForRefreshing) {
         for (int i = 0; i < roleListForRefreshing.size(); i++) {
             if (roleListForRefreshing.get(i).isChecked()) {
@@ -235,18 +254,28 @@ public class CreateEventPage4RecyclerAdapter extends RecyclerView.Adapter<Create
         }
     }
 
+    /**
+     * Vraca se broj liste svih uloga.
+     */
     @Override
     public int getItemCount() {
         return eventRolesList.size();
     }
 
 
+    /**
+     * ViewHolder za ovaj RecyclerView.
+     */
     class CreateEventPage4RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleTextView, descriptionTextView, suboridnatesTextview;
         Button editButtonPage4;
         CardView mainCardView;
 
+
+        /**
+         * Referenciranje svih vizuelnih elemenata ovog holdera.
+         */
         public CreateEventPage4RecyclerViewHolder(View itemView) {
             super(itemView);
 

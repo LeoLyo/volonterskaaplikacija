@@ -14,36 +14,59 @@ import com.random.anagnosti.volonterskaaplikacija.R;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter za listu koriscenju u fragmentu trecem, to jest klasi CreateEventFragmentPage3.
+ */
 public class CreateEventPage3ListAdapter extends BaseAdapter{
 
     private Context context;
     private ArrayList<EventDay> eventDays;
     private static LayoutInflater inflater = null;
 
+    /**
+     * Konstruktor koji preuzima kontekst, listu dana i LayoutInflater.
+     */
     public CreateEventPage3ListAdapter(Context context, ArrayList<EventDay> eventDays){
         this.context=context;
         this.eventDays=eventDays;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    /**
+     * Vraca se duzina liste dana.
+     */
     @Override
     public int getCount() {
         return eventDays.size();
     }
 
+    /**
+     * Vracaju se svi dani u listi.
+     */
     public ArrayList<EventDay> getAllDays(){
         return eventDays;
     }
+
+    /**
+     * Vraca se specifican dan iz liste.
+     */
     @Override
     public Object getItem(int i) {
         return eventDays.get(i);
     }
 
+    /**
+     * Vraca se id odredjenog dana iz liste.
+     */
     @Override
     public long getItemId(int i) {
         return i;
     }
 
+    /**
+     * Posle referenciranja vizuelnih elemenata, na klik slike koja predstavlja dugme za prihvacenje inputa u ovom specificnom fragmentu, uspesno se upisuju svi podaci iz odgovarajucih polja
+     * u Singleton.
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View rootView = view;

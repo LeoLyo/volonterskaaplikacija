@@ -2,22 +2,36 @@ package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import java.util.ArrayList;
 
+/**
+ * Klasa koja predstavlja ulogu na festivalu, sa svojim podacima: ime i opis uloge, jedinstven id, listu sledbenika,  kao i boolean za stanje uloge: checked ili not checked.
+ */
 public class EventRole {
     private String name, description;
     private long uniqueId;
     private ArrayList<EventRole> subordinates;
     private boolean isChecked;
 
-    private ArrayList<EventRoleObligation> obligations;
 
-    public EventRole(String name, long uniqueId, ArrayList<EventRole> subordinates, ArrayList<EventRoleObligation> obligations) {
+    /**
+     * Konstruktor koji preuzima ime, jedinstven id, kao i listu sledbenika.
+     * @param name ime uloge
+     * @param uniqueId id uloge
+     * @param subordinates lista sledbenika ove uloge, to jest lista uloga kojima je ova uloga nadredjeni
+     */
+    public EventRole(String name, long uniqueId, ArrayList<EventRole> subordinates) {
         this.name = name;
         this.uniqueId = uniqueId;
         this.subordinates = subordinates;
-        this.obligations = obligations;
         this.isChecked=false;
     }
 
+    /**
+     * Konstruktor koji preuzima ime, jedinstven id, listu sledbenika i opis uloge.
+     * @param name ime uloge
+     * @param uniqueId id uloge
+     * @param subordinates lista sledbenika sledbenika ove uloge, to jest lista uloga kojima je ova uloga nadredjeni
+     * @param description opis zaduzenja uloge tokom eventa.
+     */
     //FOR TESTING
     public EventRole(String name, long uniqueId, ArrayList<EventRole> subordinates, String description){
         this.name = name;
@@ -26,12 +40,22 @@ public class EventRole {
         this.description=description;
         this.isChecked=false;
     }
+
+    /**
+     * Konstruktor koji preuzima ime i jedinstven id
+     * @param name ime uloge
+     * @param uniqueId id uloge
+     */
     public EventRole(String name, long uniqueId){
         this.name = name;
         this.uniqueId = uniqueId;
         this.description="";
         this.isChecked=false;
     }
+
+    /**
+     * Metoda za preuzimanje svih sledbenika u obliku formatiranog stringa.
+     */
     public String getAllSubordinatesInString(){
         String sSubs="";
         if(subordinates.size()==0){
@@ -87,17 +111,17 @@ public class EventRole {
     public void setSubordinates(ArrayList<EventRole> subordinates) {
         this.subordinates = subordinates;
     }
+
+    /**
+     * Metoda za uklanjanje svih sledbenika iz liste.
+     */
     public void removeSubordinates(){
         subordinates.clear();
     }
-    public ArrayList<EventRoleObligation> getObligations() {
-        return obligations;
-    }
 
-    public void setObligations(ArrayList<EventRoleObligation> obligations) {
-        this.obligations = obligations;
-    }
-
+    /**
+     * Vraca ime uloge.
+     */
     @Override
     public String toString() {
         return name;

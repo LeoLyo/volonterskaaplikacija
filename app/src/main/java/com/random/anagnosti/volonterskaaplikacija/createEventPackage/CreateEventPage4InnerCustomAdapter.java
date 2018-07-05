@@ -14,6 +14,9 @@ import com.random.anagnosti.volonterskaaplikacija.R;
 
 import java.util.List;
 
+/**
+ * Adapter za listu sledbenika unutar popUpDialoga za kreiranje uloge u cetvrtom fragmentu CreateEvent dela aplikacije.
+ */
 public class CreateEventPage4InnerCustomAdapter extends BaseAdapter {
 
     Activity activity;
@@ -27,6 +30,9 @@ public class CreateEventPage4InnerCustomAdapter extends BaseAdapter {
         this.activity = activity;
     }
 
+    /**
+     * Konstruktor koji preuzima Activity i listu svih uloga sledbenika.
+     */
     public CreateEventPage4InnerCustomAdapter(Activity activity, List<EventRole> allRoles) {
         this.activity = activity;
         this.allRoles = allRoles;
@@ -34,21 +40,33 @@ public class CreateEventPage4InnerCustomAdapter extends BaseAdapter {
         inflater = activity.getLayoutInflater();
     }
 
+    /**
+     * Vraca se broj svih uloga iz liste.
+     */
     @Override
     public int getCount() {
         return allRoles.size();
     }
 
+    /**
+     * Vraca se specificna uloga iz liste.
+     */
     @Override
     public Object getItem(int i) {
-        return i;
+        return allRoles.get(i);
     }
 
+    /**
+     * Vraca se id odredjene uloge iz liste.
+     */
     @Override
     public long getItemId(int i) {
         return i;
     }
 
+    /**
+     * Ako je trenutna uloga selektovana, to jest promenljiva isChecked je stavljena na true, onda se slika vezana za ovu ulogu postavlja u Checked sliku. U suprotnom, postavlja se u Unchecked.
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
@@ -79,6 +97,9 @@ public class CreateEventPage4InnerCustomAdapter extends BaseAdapter {
         return view;
     }
 
+    /**
+     * Azurira se lista svih uloga.
+     */
     public void updateRecords(List<EventRole> allRoles){
         this.allRoles = allRoles;
         notifyDataSetChanged();

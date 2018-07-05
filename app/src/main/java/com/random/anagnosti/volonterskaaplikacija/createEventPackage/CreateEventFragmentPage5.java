@@ -31,12 +31,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateEventFragmentPage5.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateEventFragmentPage5#newInstance} factory method to
- * create an instance of this fragment.
+ * Peta strana to jest fragment Create Event dela aplikacije. U RecyclerView se ubacuju CardView-ovi sa email-om osobe, njihove uloge, kao i email osobe koja predstavlja njihovog sefa (parent).
+ * Svaki email mora biti jedinstven i uloge postuju strogo pravilo ko kome moze biti nadlezni.
  */
 public class CreateEventFragmentPage5 extends Fragment implements Observer{
     private static final String TAG = "CreateEventFragmentPage5";
@@ -69,12 +65,7 @@ public class CreateEventFragmentPage5 extends Fragment implements Observer{
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateEventFragmentPage5.
      */
     // TODO: Rename and change types and number of parameters
     public static CreateEventFragmentPage5 newInstance(String param1, String param2) {
@@ -95,6 +86,13 @@ public class CreateEventFragmentPage5 extends Fragment implements Observer{
         }
     }
 
+    /**
+     *  Nakon referenciranja svih vizuelnih elemenata ovog fragmenta i inicijalizacije RecyclerView liste, postavlja se listener na floating action button ili FAO. Na pritisak dugmeta,
+     *  kreira se popUpDialog za kreiranje osobe koja ce raditi neki zadat posao na Event-u. Moguce je uneti email (mora se postovati pravilo email sintakse. Email takodje mora da vec
+     *  nije bio unesen u listu email-ova da bi mogla osoba s ovim email-om da se doda u listu. Osoba moze imati nadleznog: u slucaju da osoba ne treba nikog nadleznog da ima, moze se
+     *  izabrati email nobody@nonono.com kao nepostojec nadlezni. Pri zavrsavanju unosa, na pritisak dugmeta za zatvaranje popUpDialog-a, podaci se ubacuju u Singleton i u RecyclerView
+     *  se ubacuje CardView sa osobom.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -208,6 +206,9 @@ public class CreateEventFragmentPage5 extends Fragment implements Observer{
         return rootView;
     }
 
+    /**
+     * Vrsi se provera da li je email adresa odgovarajuceg pattern-a.
+     */
     public static boolean isEmailValid(String email) {
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
@@ -245,16 +246,7 @@ public class CreateEventFragmentPage5 extends Fragment implements Observer{
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

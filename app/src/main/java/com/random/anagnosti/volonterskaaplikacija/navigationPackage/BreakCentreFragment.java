@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Klasa koja jos nije implementovana. Sluzice prikazivanju liste svih prethodnih pauza koje je osoba uzela, kao i mogucnost trazenja nove pauze.
+ */
 public class BreakCentreFragment extends Fragment {
 
     @Nullable

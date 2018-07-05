@@ -37,6 +37,9 @@ import com.random.anagnosti.volonterskaaplikacija.createEventPackage.CreateEvent
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Klasa zasluzena za prikaz podataka korisnika, kao i prikaza korisnicke slike, mogucnost preuzimanja slike iz skladista, ali i opcija slikanja nove korisnicke profilne slike pomocu kamere.
+ */
 public class MyProfileActivity extends AppCompatActivity {
 private String TAG ="MyProfileActivityTag";
 
@@ -54,6 +57,10 @@ private String TAG ="MyProfileActivityTag";
      String prezime="prezime";
      String broj="brpj";
      String adr="adr";
+
+    /**
+     * Preuzimaju se svi podaci korisnika iz baze i upisuju se u odgovarajuca polja.
+     */
     private void loadUserInfo() {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null) {
@@ -94,6 +101,9 @@ private String TAG ="MyProfileActivityTag";
         ;}
     }
 
+    /**
+     * Poziva se nov intent za odabir slike iz skladista.
+     */
     public void addProfileImage(View view){
        /* Intent intent = new Intent();
         intent.setType("image/*");
@@ -117,9 +127,9 @@ private String TAG ="MyProfileActivityTag";
     }
 
 
-
-
-
+    /**
+     * Otvara se klasa za editovanje profila.
+     */
     public void editProfileInfo(View view)
     {
         Intent intent = new Intent(this, EditProfileInfo.class);
@@ -138,6 +148,9 @@ private String TAG ="MyProfileActivityTag";
         dialogBuilder.setTitle("Updating email");
     }
 
+    /**
+     * Nakon referenciranja odgovarajucih vizuelnih elemenata View-a, obavlja se akcija na pritisak dugmeta za slikanje kamerom preusmeravanjem koristeci startActivityForResult.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +186,11 @@ private String TAG ="MyProfileActivityTag";
 
     }
 
+    /**
+     * U slucaju da je kod 2, preuzima se slikana slika, cut-uje se da stane u krug i postavlja se za profilnu sliku na ekranu. U slucaju da je requestCode PICK_IMAGE vrednost,
+     * selektovana slika iz skladista biva konvertovana i cut-ovanja da stane u krug i postavlja se za profilnu sliku na ekranu. Nakon jedne od ove dve prethodno pomenute akcije,
+     * Slika se ubacuje u bazu.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -18,6 +18,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Pokusaj kreiranja prikazivanja mape. Premesteno u AboutEventFragment paketa navigationPackage.
+ */
 public class About_Event_Activity extends Activity implements LocationListener, OnMapReadyCallback {
 
     GoogleMap googleMap;

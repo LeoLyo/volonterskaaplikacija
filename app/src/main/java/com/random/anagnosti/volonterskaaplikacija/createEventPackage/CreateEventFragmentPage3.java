@@ -18,12 +18,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateEventFragmentPage3.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateEventFragmentPage3#newInstance} factory method to
- * create an instance of this fragment.
+ * Treca strana to jest fragment Create Event dela aplikacije. U odnosu na unesene datume u prethodnom fragmentu ili te strani, ovde se kreira isti broj fragmenata kao broj dana i ubaci u listu.
+ * Pored fragmenata u listi se nalazi  confirm Button koje potvrdjuje unose svih fragmenata.
  */
 public class CreateEventFragmentPage3 extends Fragment implements Observer{
     private static final String TAG = "CreateEventFragmentPage3";
@@ -50,14 +46,6 @@ public class CreateEventFragmentPage3 extends Fragment implements Observer{
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateEventFragmentPage3.
-     */
     // TODO: Rename and change types and number of parameters
     public static CreateEventFragmentPage3 newInstance(String param1, String param2) {
         CreateEventFragmentPage3 fragment = new CreateEventFragmentPage3();
@@ -78,6 +66,9 @@ public class CreateEventFragmentPage3 extends Fragment implements Observer{
         }
     }
 
+    /**
+     * Desava se provera da li se neki dan Event-a nije popunilo. U slucaju da nije, ne obelezava se polje u Singleton-u da je page 3 spreman za registrovanje u bazu.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -159,17 +150,6 @@ public class CreateEventFragmentPage3 extends Fragment implements Observer{
             }
         }
     }
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
@@ -177,6 +157,9 @@ public class CreateEventFragmentPage3 extends Fragment implements Observer{
     }
 
 
+    /**
+     * Na resume-ovanje fragmenta, refresh-uje se lista u slucaju da je Refresh-ovanje potrebno.
+     */
     @Override
     public void onResume() {
 

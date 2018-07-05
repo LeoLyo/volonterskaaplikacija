@@ -2,6 +2,9 @@ package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import java.util.Date;
 
+/**
+ * Klasa koja predstavlja dan na festivalu sa svojim podacima: datum, vreme pocetka, vreme kraja, putanja ka fajlu plana dana na festivalu, kao i boolean polje da li je dan popunjen.
+ */
 public class EventDay {
 
     private Date date;
@@ -10,6 +13,9 @@ public class EventDay {
     private String attachDayFile;
     private boolean isFilled;
 
+    /**
+     * Konstruktor za setovanje standardno stanje svih promenljivih pri kreiranju dana.
+     */
     public EventDay(){
         this.date=new Date();
         this.timeStart="00:00";
@@ -17,6 +23,13 @@ public class EventDay {
         this.attachDayFile="nothing_yet";
         this.isFilled=false;
     }
+
+    /**
+     * @param date datum eventa
+     * @param timeStart vreme pocetka eventa
+     * @param timeEnd vreme kraja eventa
+     * @param attachDayFile link ka poziciji fajla
+     */
     public EventDay(Date date, String timeStart, String timeEnd, String attachDayFile) {
         this.date=date;
         this.timeStart = timeStart;

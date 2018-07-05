@@ -8,12 +8,18 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+/**
+ * Klasa za odabir datume u DatePicker-u i njihovo modifikovanje.
+ */
 public class MyDatePickerDialog implements View.OnClickListener{
 
     Context localContext;
     TextView localTextView;
     int dayE;
 
+    /**
+     * Konstruktor za preuzimanje konteksta, TextView vizuelne komponente u koju ce se smestati tekst i jedinstven broj dana po kome se razlikuje prvi dan od poslednjeg.
+     */
     public MyDatePickerDialog(Context context, TextView textView,int dayE){
 
         this.localContext = context;
@@ -21,6 +27,9 @@ public class MyDatePickerDialog implements View.OnClickListener{
         this.dayE = dayE;
     }
 
+    /**
+     * Nakon odabira datuma, proveri se o kom je danu rec. U zavisnosti od izabranog dana se rezultujuci string formatira na odredjen nacin.
+     */
     @Override
     public void onClick(View view) {
         Calendar cal = Calendar.getInstance();

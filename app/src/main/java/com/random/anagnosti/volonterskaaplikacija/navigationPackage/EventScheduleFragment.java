@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+
+/**
+ * Klasa koja jos nije implementovana. Sluzice prikazivanju plana i programa eventa.
+ */
 public class EventScheduleFragment extends Fragment {
 
     @Nullable

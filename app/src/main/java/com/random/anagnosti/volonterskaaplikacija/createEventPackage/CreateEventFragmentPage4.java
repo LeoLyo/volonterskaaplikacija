@@ -30,12 +30,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateEventFragmentPage4.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateEventFragmentPage4#newInstance} factory method to
- * create an instance of this fragment.
+ * Cetvrta strana to jest fragment Create Event dela aplikacije. Odvija se kreiranje pozicija za ljude eventa koje ce se koristiti u petom fragmentu.
+ * Svaka pozicija mora imati jedinstven naziv, moguce je dodati opis ali nije neophodno i svaka pozicija moze imati sledbenika, parent-child odnos, ukljucujuci i sa samim sobom.
  */
 public class CreateEventFragmentPage4 extends Fragment implements Observer {
     private static final String TAG = "CreateEventFragmentPage4";
@@ -68,14 +64,7 @@ public class CreateEventFragmentPage4 extends Fragment implements Observer {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateEventFragmentPage4.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static CreateEventFragmentPage4 newInstance(String param1, String param2) {
         CreateEventFragmentPage4 fragment = new CreateEventFragmentPage4();
@@ -95,6 +84,11 @@ public class CreateEventFragmentPage4 extends Fragment implements Observer {
         }
     }
 
+    /**
+     * Nakon referenciranja vizuelnih aspekata ovog fragmenta i inicijalizacije RecyclerView liste, na klik createButton-a se otvara popUpDialog sa prozorom za kreiranje role-a, to jest uloge
+     * Event-a. Uloga se sastoji o naslova, opisa i sledbenika. Nakon popunjavanja i na pritisak dugmeta za zavrsavanje kreiranja, uspesno se kreira uloga ukoliko se unese bilo kakav naslov
+     * uloge koji vec nije u listi, pa ubaci se u Singleton i prikaze se u RecyclerView listu u obliku CardView objekta.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -197,6 +191,10 @@ public class CreateEventFragmentPage4 extends Fragment implements Observer {
         return rootView;
     }
 
+    /**
+     * Zbog prirode koda za biranje sledbenika, one ostaju selektovane u slucaju ulaza u popUpDialog za kreiranje nove uloge. Ovom metodom resetujemo stanje svakog moguceg sledbenika i stavljamo
+     * ih na "not selected".
+     */
     private void refreshRoleList(ArrayList<EventRole> roleListForRefreshing) {
         for (int i = 0; i < roleListForRefreshing.size(); i++) {
             if (roleListForRefreshing.get(i).isChecked() == true) {
@@ -234,16 +232,6 @@ public class CreateEventFragmentPage4 extends Fragment implements Observer {
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

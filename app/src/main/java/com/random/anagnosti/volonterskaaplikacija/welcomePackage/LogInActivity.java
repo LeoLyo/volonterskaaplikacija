@@ -16,12 +16,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Klasa koja je zasluzena za logovanje korisnika u aplikaciju.
+ */
 public class LogInActivity extends Activity {
 
     FirebaseAuth mAuth;
     EditText editTextEmailLogin, editTextPasswordLogin;
     ProgressBar progressBarLogin;
 
+    /**
+     * Referenciranje adekvatnih vizuelnih elemenata.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +39,18 @@ public class LogInActivity extends Activity {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    /**
+     * Metoda za odlazak na deo za registraciju.
+     */
     public void registerAction(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Metoda koja proverava da li je email upisan, pravilnog formata, da li je sifra upisana i odgovarajuce velicine. U slucaju da su pravilno upisani podaci, pokusan je signin u bazu
+     * navedenim podacima. U slucaju uspesnog loginovanja, vraca se prethodni Activity, to jest WelcomeActivity.
+     */
     public void welcomeAction(View view){
         /*String editText = (String) findViewById(R.id.editText);
         String message = editText.toString();*/

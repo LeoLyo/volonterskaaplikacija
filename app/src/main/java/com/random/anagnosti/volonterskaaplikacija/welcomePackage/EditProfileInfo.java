@@ -19,12 +19,19 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Klasa koja sluzi za editovanje profila korisnika. Nakon unosa svih zeljenih podataka u odgovarajuca polja, pritiskom na dugme se podaci ubacuju u bazu, zamenjujuci prethodno ubacene
+ * podatke.
+ */
 public class EditProfileInfo extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private TextView image;
 
+    /**
+     * Prvobitna klasa za update-ovanje korisnika.
+     */
     private void updateUserInfo() {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null) {
@@ -71,6 +78,11 @@ public class EditProfileInfo extends AppCompatActivity {
     Button submit;
 
     String surname,addr,num,imejl;
+
+
+    /**
+     * Referenciraju se svi vizuelni elementi View-a.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +108,9 @@ public class EditProfileInfo extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Podaci se ubacuju u bazu, zamenjujuci prethodno ubacene podatke.
+     */
     public void updateF()
     {
         final String firstName = ime.getText().toString().trim();

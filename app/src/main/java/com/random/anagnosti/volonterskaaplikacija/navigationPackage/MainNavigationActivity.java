@@ -18,10 +18,17 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Glavna klasa za rukovanje NavigationView-om.
+ */
 public class MainNavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     private TextView eventTitle;
     private String eventId;
+
+    /**
+     * Metoda u kojoj se kreiraju svi vizuelni elementi neophodni za ovaj deo aplikacije. Takodje se id eventa prima iz Extra dela Intent-a, a naslov eventa se po tome setuje.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +71,9 @@ public class MainNavigationActivity extends AppCompatActivity implements Navigat
         });
     }
 
+    /**
+     * Na odabir odgovarajuceg polja iz menija, prebacuje se na odredjen fragment.
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
@@ -93,14 +103,19 @@ public class MainNavigationActivity extends AppCompatActivity implements Navigat
     }
 
 
+
     public String getEventId() {
         return eventId;
     }
+
 
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
+    /**
+     * zatvara se NavigationDrawer prozor.
+     */
     @Override
     public void onBackPressed() {
         if(drawer.isDrawerOpen(GravityCompat.START)){

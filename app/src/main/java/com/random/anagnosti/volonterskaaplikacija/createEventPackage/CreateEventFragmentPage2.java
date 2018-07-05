@@ -35,12 +35,8 @@ import java.util.Observer;
 import static android.app.Activity.RESULT_OK;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateEventFragmentPage2.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateEventFragmentPage2#newInstance} factory method to
- * create an instance of this fragment.
+ * Prva strana to jest fragment Create Event dela aplikacije. Za razliku od prethodne stranice, ovde je svaki TextView clickable i predstavlja link ka necemu drugom:
+ * biranje datuma, lokacije i odabir slike iz memorije.
  */
 public class CreateEventFragmentPage2 extends Fragment implements Observer{
     private static final String TAG = "CreateEventFragmentPage2";
@@ -78,14 +74,7 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateEventFragmentPage2.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static CreateEventFragmentPage2 newInstance(String param1, String param2) {
         CreateEventFragmentPage2 fragment = new CreateEventFragmentPage2();
@@ -96,6 +85,9 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
         return fragment;
     }
 
+    /**
+     * Promenljive firstDayDateArray, lastDayDateArray i dayOfEventCounter  se resetuju.
+     * */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +104,14 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
         }
     }
 
+    /**
+     * Nakon referenciranja svih TextView-ova, ImageView-a i Button-a, pozivaju se listener-i za TextView-ove zaduzene za datum i svaki listener kreira novu MyDatePickerDialog klasu.
+     * Na pritisak TextView-a za lokaciju, kreira se PlacePicker builder i poziva se isti kao nov activity. Takodje se salje PLACE_PICKER_REQUEST vrednost u onActivityResult preko resultCode promenljive.
+     * Na pritisak TextView-a za Image, setuje se tip novostvorenog intent-a i otvara se prozor za odabir slike iz memorije. Takodje se, kao za lokaciju, salje vrednost CHOOSE_IMAGE_REQUEST
+     * u onActivityREsult preko resultCode promenljive.
+     * Na pritisak dugmeta za potvrdjivanje svih unosa, proverava se da li su datumi validni (prvi je datum manji od drugog: ne sme datum pocetka Event-a da se desi nakon zavrsavanja istog).
+     * Ako nisu, onda se ispisuju odgovarajuci ispisi. koristeci SimpleDateFormat i Date, datumi se formatuju, izracuna se koliko dana traje sam event i vrednosti se ubace u Singleton Event-a.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -246,6 +246,10 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
 
     }
 
+    /**
+     * U odnosu na dobijen requestCode, desava se ili deo za odabir lokacije ili slike. U slucaju lokacije, iz PlacePicker-a se izvuce mesto koje se dalje podeli na adresu, lokaciju i koordinate,
+     * pa se sva tri podatka upisu u Singleton, kao i u TextView-ove na ekranu. U slucaju izbora slike, preuzima se slika u obliku bitmape preko Uri linka. I uri link i bitmapa se ubacuju u Singleton.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode==PLACE_PICKER_REQUEST){
@@ -315,16 +319,7 @@ public class CreateEventFragmentPage2 extends Fragment implements Observer{
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

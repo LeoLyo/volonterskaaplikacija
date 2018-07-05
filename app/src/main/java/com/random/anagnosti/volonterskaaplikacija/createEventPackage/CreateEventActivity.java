@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.random.anagnosti.volonterskaaplikacija.R;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +32,6 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.random.anagnosti.volonterskaaplikacija.R;
 import com.random.anagnosti.volonterskaaplikacija.welcomePackage.WelcomeActivity;
 
 import java.util.ArrayList;
@@ -39,6 +40,10 @@ import java.util.Map;
 import java.util.Objects;
 
 
+/**
+ * Glavna klasa za kreiranje event-a. U pitanju je container u kome se nalaze fragmenti stranica za kreiranje event-a, stranice od 1 do 5.
+ *
+ */
 public class CreateEventActivity extends AppCompatActivity implements CreateEventFragmentPage1.OnFragmentInteractionListener,CreateEventFragmentPage2.OnFragmentInteractionListener,CreateEventFragmentPage3.OnFragmentInteractionListener,CreateEventFragmentPage4.OnFragmentInteractionListener,CreateEventFragmentPage5.OnFragmentInteractionListener{
 
     private static final String TAG = "CreateEventActivity";
@@ -49,6 +54,11 @@ public class CreateEventActivity extends AppCompatActivity implements CreateEven
 
     private FirebaseFirestore db;
 
+    /**
+     * Postavljaju se odgovarajuci naslovi za stranice u TabLayout-u za svaku pojedinacnu stranicu. takodje se odvija akcija na odabir stranice 3.
+     * U istu ruku se desava akcija na klik dugmeta za kreiranje eventa. Izvrsi se provera da li je nesto uneseno to jest odradjeno na svakoj stranici, ako jeste pojavljuje se PopUpDialog
+     * koji predstavlja konacnu potvrdu pred kreiranje eventa.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,8 +144,9 @@ public class CreateEventActivity extends AppCompatActivity implements CreateEven
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
-
+    /**
+     *  Unistavamo singleton zajedno sa celim activity-jem, time se pri ponovnom ulasku u Create Event prozor u aplikaciji nece ponovo pokazati sva polja popunjena, vec ce sve biti prazno.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -147,10 +158,17 @@ public class CreateEventActivity extends AppCompatActivity implements CreateEven
 
     }
 
+    /**
+     *  Okolo naokolo se odvija obavestavanje observera da bi se znalo o kom je fragmentu rec
+     */
     private void updateFragments(){
         mSectionsPagerAdapter.updateFragments();
     }
 
+    /**
+     *  Kreira se HashMap za trenutni event koji kreiramo sa svim poljima u koja ubacemo odgovarajuce vrednosti sacuvane u Singleton-u. Nakon sto je event uspesno ubacen,
+     *  u bazu se ubaci slika event-a, pa dani event-a, uloge ljudi na event-u i ljudi to jest volonteri event-a tim redom. Pri zavrsetku izvrsavanja metode se prikazuje Welcome Activity.
+     */
     private void uploadAndCreateEvent(){
         db=FirebaseFirestore.getInstance();
 

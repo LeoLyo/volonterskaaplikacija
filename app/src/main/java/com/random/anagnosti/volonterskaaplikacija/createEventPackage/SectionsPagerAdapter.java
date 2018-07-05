@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Adapter za stranice CreateEvent dela, to jest sve fragmente. Ovde se fragmenti smenjuju u zavisnosti od toga koji se prikazuje na ekranu.
+ */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     int numberOfTabs;
@@ -18,6 +21,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private Map<Integer,String> mFragmentTabs;
     private FragmentManager mFragmentManager;
 
+    /**
+     * Konstruktor za ovaj stranicni adapter sa brojem tabova i fragment managerom.
+     */
     public SectionsPagerAdapter(FragmentManager fm, int numberOfTabs) {
         super(fm);
         this.numberOfTabs=numberOfTabs;
@@ -25,6 +31,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mFragmentManager=fm;
     }
 
+    /**
+     * Metoda u kojoj se u odnosu na poziciju bira odredjen fragment. Ako pozicija prevazilazi broj fragmenata, vraca se null.
+     */
     @Override
     public Fragment getItem(int position) {
         //mObservers.deleteObservers();//Clear existing observers
@@ -67,16 +76,24 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     }
 
 
+    /**
+     * Vraca se ukupan broj tabova, to jest fragmenata ili te stranica.
+     */
     @Override
     public int getCount() {
-        // Show 3 total pages.
         return numberOfTabs;
     }
 
+    /**
+     * Obavestavaju se observeri.
+     */
     public void updateFragments(){
         mObservers.notifyObservers();
     }
 
+    /**
+     * Instancira se specifican fragment.
+     */
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         Object obj = super.instantiateItem(container,position);
@@ -88,6 +105,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         }
         return obj;
     }
+
+    /**
+     * Preuzima se fragment.
+     */
     public Fragment getFragment(int position){
         String tag = mFragmentTabs.get(position);
         if(tag==null){

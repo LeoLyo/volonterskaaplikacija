@@ -31,10 +31,17 @@ import com.random.anagnosti.volonterskaaplikacija.R;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Klasa koja vraca iz baze lokaciju eventa i otvara je u telefonskoj aplikaciji za pregled mapa (google.com/maps).
+ */
 public class AboutEventFragment extends Fragment {
     FirebaseFirestore mFirestore;
 
 
+    /**
+     * Iz baze se uzima lokacija ovog Event-a. U slucaju uspesnog preuzimanja, postavlja se geolokacija izvucena iz baze i otvara se bulit in aplikacija za pregled mape na telefonu
+     * koristeci izvucenu geolokaciju.
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

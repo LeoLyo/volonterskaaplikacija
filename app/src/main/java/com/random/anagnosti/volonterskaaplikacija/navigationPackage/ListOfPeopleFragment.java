@@ -24,6 +24,9 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Klasa koja sluzi za prikaz listu ljudi eventa izvucenu iz baze.
+ */
 public class ListOfPeopleFragment extends Fragment {
 
     private TextView listOfPeopleTV;
@@ -32,6 +35,9 @@ public class ListOfPeopleFragment extends Fragment {
     private List<People> peopleList;
     private PeopleRecyclerAdapter peopleRecyclerAdapter;
 
+    /**
+     * Odlaskom u bazu, izvuce se za specifican event lista svih ljudi.
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import com.random.anagnosti.volonterskaaplikacija.R;
 
+/**
+ * Klasa koja jos nije implementovana. Sluzice dodeljivanju obligacija sledbeniku.
+ */
 public class AssignObligationsFragment extends Fragment {
 
     @Nullable

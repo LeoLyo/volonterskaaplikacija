@@ -27,6 +27,9 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Klasa koja je zasluzena za registrovanje korisnika u bazu i time omogucava korisnika da koristi aplikaciju.
+ */
 public class RegisterActivity extends Activity {
 
     public static final String EMAIL_KEY = "Email";
@@ -42,6 +45,9 @@ public class RegisterActivity extends Activity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
+    /**
+     * Sve reference su adekvatno podesene u skladu sa svojim odgovarajucim vizuelnim elementima View-a.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +67,10 @@ public class RegisterActivity extends Activity {
     }
 
 
+    /**
+     * Proveravaju se podaci koje je korisnik uneo u odgovarajuca polja. Ako su sva polja odgovarajuce unesena, kreira se HashMap sa prethodnim podacima i time se kreira korisnik.
+     * Nakon toga se korisnik ubaci u bazu i otvara se WelcomeActivity klasa.
+     */
     public void registerUser(View view){
         final String email = editTextEmail.getText().toString().trim();
         final String firstName = editTextFirstName.getText().toString().trim();

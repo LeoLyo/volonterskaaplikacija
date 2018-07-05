@@ -17,12 +17,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateEventFragmentPage1.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CreateEventFragmentPage1#newInstance} factory method to
- * create an instance of this fragment.
+ * Prva strana to jest fragment Create Event dela aplikacije. U ovom fragmentu se nalaze EditText-ovi u koje se upisuju trazene vrednosti, osnovni podaci o Event-u.
  */
 public class CreateEventFragmentPage1 extends Fragment implements Observer{
     private static final String TAG = "CreateEventFragmentPage1";
@@ -45,14 +40,7 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateEventFragmentPage1.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static CreateEventFragmentPage1 newInstance(String param1, String param2) {
         CreateEventFragmentPage1 fragment = new CreateEventFragmentPage1();
@@ -74,6 +62,10 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
         }
     }
 
+    /**
+     * Svaki EditText se inicijalizuje, kao i dugme i na pritisak dugmeta se pozove metoda za ubacivanje vrednosti iz EditText-ova u Singleton. Takodje se promeni status
+     * svih EditText-ova na selected=false.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -125,6 +117,9 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
         mListener = null;
     }
 
+    /**
+     * Metoda u kojoj se vrednosti iz svih EditText polja ubacuju u Singleton Event-a.
+     */
     public void insertIntoSingleton(){
         Singleton singleton = Singleton.Instance();
         singleton.eventName=eventName.getText().toString();
@@ -138,16 +133,6 @@ public class CreateEventFragmentPage1 extends Fragment implements Observer{
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

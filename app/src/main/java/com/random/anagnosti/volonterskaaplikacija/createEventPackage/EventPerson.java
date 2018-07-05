@@ -2,6 +2,9 @@ package com.random.anagnosti.volonterskaaplikacija.createEventPackage;
 
 import java.util.ArrayList;
 
+/**
+ * Klasa koja predstavlja osobu na festivalu, sa svojim podacima: email, uloga pojedinca, lista podanika, nadredjenog, listu prethodnih pozicija u listi, boju i dubinu u listi.
+ */
 public class EventPerson {
     private String email;
     private EventRole roleOfIndividual;
@@ -11,49 +14,80 @@ public class EventPerson {
     private String color;
     private int depth;
 
+    /**
+     * Konstruktor koji preuzima email, ulogu individue i listu podanika.
+     */
     public EventPerson(String email, EventRole roleOfIndividual, ArrayList<EventPerson> subordinates) {
         this.email = email;
         this.roleOfIndividual = roleOfIndividual;
         this.subordinates = subordinates;
     }
 
-    public EventPerson( String email, EventRole roleOfIndividual, int depth, ArrayList<Integer> previousPositions) {
+    /**
+     * Konstruktor za koji preuzima email, ulogu individue, dubinu i listu podanika.
+     *
+     * @param email             email osobe
+     * @param roleOfIndividual  uloga individue
+     * @param depth             dubina u listi
+     * @param previousPositions prethodna pozicija u listi
+     */
+    public EventPerson(String email, EventRole roleOfIndividual, int depth, ArrayList<Integer> previousPositions) {
         this.email = email;
         this.roleOfIndividual = roleOfIndividual;
         this.subordinates = new ArrayList<>();
-        this.depth=depth;
-        this.previousPositions=previousPositions;
+        this.depth = depth;
+        this.previousPositions = previousPositions;
         this.color = "FFFFFF";
     }
 
-    public EventPerson( String email, EventRole roleOfIndividual, int depth, EventPerson parentOfIndividual) {
+    /**
+     * Konstruktor za koji preuzima email, ulogu individue, dubinu i roditelja to jest nadleznog osobe.
+     *
+     * @param email              email osobe
+     * @param roleOfIndividual   uloga individue
+     * @param depth              dubina u listi
+     * @param parentOfIndividual roditelj individue to jest nadlezni
+     */
+    public EventPerson(String email, EventRole roleOfIndividual, int depth, EventPerson parentOfIndividual) {
         this.email = email;
         this.roleOfIndividual = roleOfIndividual;
         this.subordinates = new ArrayList<>();
-        this.depth=depth;
-        this.previousPositions=new ArrayList<>();
-        this.parentOfIndividual=parentOfIndividual;
+        this.depth = depth;
+        this.previousPositions = new ArrayList<>();
+        this.parentOfIndividual = parentOfIndividual;
         this.color = "FFFFFF";
     }
 
-    public EventPerson( String email, EventRole roleOfIndividual, int depth) {
+    /**
+     * Konstruktor za koji preuzima email, ulogu individue, dubinu i listu podanika.
+     *
+     * @param email            email osobe
+     * @param roleOfIndividual uloga individue
+     * @param depth            dubina u listi
+     */
+    public EventPerson(String email, EventRole roleOfIndividual, int depth) {
         this.email = email;
         this.roleOfIndividual = roleOfIndividual;
         this.subordinates = new ArrayList<>();
-        this.depth=depth;
-        this.previousPositions=new ArrayList<>();
+        this.depth = depth;
+        this.previousPositions = new ArrayList<>();
         this.color = "FFFFFF";
     }
 
 
-    public void darkenBy(int howMuch){
+    /**
+     * Metoda koja smanjuje boju osobe za vrednost promenljive howMuch u hex kodu.
+     *
+     * @param howMuch vrednost smanjivanja
+     */
+    public void darkenBy(int howMuch) {
         int count = howMuch;
         char[] charOfColor = color.toCharArray();
         int[] intOfColor = new int[6];
-        for(int i=0;i<intOfColor.length;i++){
-            intOfColor[i]=(int)charOfColor[i];
+        for (int i = 0; i < intOfColor.length; i++) {
+            intOfColor[i] = (int) charOfColor[i];
         }
-        while(count>0){
+        while (count > 0) {
 
             count--;
 
@@ -62,58 +96,57 @@ public class EventPerson {
             intOfColor[3]--;
             intOfColor[1]--;
 
-            if(intOfColor[5]<48){
+            if (intOfColor[5] < 48) {
                 // Ako je pozicija neparnih indeksa na ASCII tabeli otisla ispod pozciije '0',
                 // prebacujemo neparne indekse na poziciju 70, to jest poziciju hex broja 'F',
                 // dok parne indekse oduzmemo za jedan.
 
-                intOfColor[5]=70;
-                intOfColor[3]=70;
-                intOfColor[1]=70;
+                intOfColor[5] = 70;
+                intOfColor[3] = 70;
+                intOfColor[1] = 70;
 
                 intOfColor[4]--;
                 intOfColor[2]--;
                 intOfColor[0]--;
-                if(intOfColor[4]<48){
+                if (intOfColor[4] < 48) {
                     // Posto smo dosli do situacije da su parni indeksi pali ispod '0', sve
                     // indekse stavljamo na poziciju broja '0', to jest 48, ili te crne boje.
 
-                    intOfColor[5]=48;
-                    intOfColor[3]=48;
-                    intOfColor[1]=48;
+                    intOfColor[5] = 48;
+                    intOfColor[3] = 48;
+                    intOfColor[1] = 48;
 
-                    intOfColor[4]=48;
-                    intOfColor[2]=48;
-                    intOfColor[0]=48;
+                    intOfColor[4] = 48;
+                    intOfColor[2] = 48;
+                    intOfColor[0] = 48;
 
                     //Posto ne postoji tamnija boja od crne, izlazimo iz petlje.
 
                     break;
-                }
-                else if(intOfColor[4]<65){
+                } else if (intOfColor[4] < 65) {
                     // Ako je pri smanjenju zbog prebacivanje neparnih indeksa doslo do toga
                     // da su parni indeksi stigli do pozicije ispod 65, to jest ispod hexa
                     // broja 'A', onda se prebacuju na poziciju broja '9', to jest 57.
 
-                    intOfColor[4]=57;
-                    intOfColor[2]=57;
-                    intOfColor[0]=57;
+                    intOfColor[4] = 57;
+                    intOfColor[2] = 57;
+                    intOfColor[0] = 57;
                 }
-            }else if(intOfColor[5]<65){
+            } else if (intOfColor[5] < 65) {
                 // Ako je pozicija neparnih indeksa na ASCII tabelo otisla ispod pozicije hexa
                 // broja 'A', to jest pozicije 65, onda se prebacuju na poziciju broja '9', to
                 // jest 57.
 
-                intOfColor[5]=57;
-                intOfColor[3]=57;
-                intOfColor[1]=57;
+                intOfColor[5] = 57;
+                intOfColor[3] = 57;
+                intOfColor[1] = 57;
             }
         }
-        for(int i=0;i<intOfColor.length;i++){
-            charOfColor[i]=(char)intOfColor[i];
+        for (int i = 0; i < intOfColor.length; i++) {
+            charOfColor[i] = (char) intOfColor[i];
         }
         String newColor = new String(charOfColor);
-        this.color=newColor;
+        this.color = newColor;
 
     }
 
@@ -125,9 +158,10 @@ public class EventPerson {
         this.parentOfIndividual = parentOfIndividual;
     }
 
-    public void addNewPreviousPosition(int position){
+    public void addNewPreviousPosition(int position) {
         previousPositions.add(position);
     }
+
     public ArrayList<Integer> getPreviousPositions() {
         return previousPositions;
     }
@@ -175,6 +209,10 @@ public class EventPerson {
     public void setSubordinates(ArrayList<EventPerson> subordinates) {
         this.subordinates = subordinates;
     }
+
+    /**
+     * Vraca email osobe.
+     */
     public String toString() {
         return email;
     }

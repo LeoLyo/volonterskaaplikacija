@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Klasa koja predsdtavlja jedan Event pri kreiranju istog. Ovde se cuvaju svi podaci o eventu i brisu nakon ubacivanja event-a u bazu.
+ */
 public class Singleton {
 
     private static Singleton mInstance = null;
@@ -33,6 +36,9 @@ public class Singleton {
     public String descriptionOfEvent;
 
 
+    /**
+     * Prazan konstruktor za podesavanje pocetnog stanja svake promenljive pri kreiranju Singleton-a.
+     */
     private Singleton(){
         mEventDays = new ArrayList<>();
         mEventRoles = new ArrayList<>();
@@ -54,6 +60,9 @@ public class Singleton {
 
     }
 
+    /**
+     * Singleton patern.
+     */
     public static Singleton Instance(){
 
         if(mInstance == null)
@@ -62,6 +71,9 @@ public class Singleton {
         return mInstance;
     }
 
+    /**
+     * Metoda koja cisti sva polja i stavlja ih u nepostojece stanje, ako to nije moguce onda u nulto stanje.
+     */
     public void destroyS(){
         mEventDays.clear();
         mEventRoles.clear();

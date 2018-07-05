@@ -33,6 +33,10 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Adapter za RecyclerView petog fragmenta CreateEvent dela aplikacije. Ovde se obavlja postavljanje tekstova u korektne vizuelne elemente CardView-a, ali i omogucavanje brisanje osobe,
+ * kao i omogucavanje editovanja svake pojedinacne osobe.
+ */
 public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<CreateEventPage5RecyclerAdapter.CreateEventPage5RecyclerViewHolder> {
 
     private ArrayList<EventPerson> mEventPeople;
@@ -45,6 +49,9 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
     private CreateEventPage5RecyclerAdapter eRoleAdapter;
 
 
+    /**
+     * Konstruktor koji preuzima Activity, kontekst i listu svih ljudi.
+     */
     public CreateEventPage5RecyclerAdapter(Activity activity, Context context, ArrayList<EventPerson> mEventPeople) {
         this.mActivity = activity;
         this.mContext = context;
@@ -52,6 +59,9 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
     }
 
 
+    /**
+     * Pri kreiranju se postavlja odgovarajuc layout za View. Takodje se kreira odgovarajuc ViewHolder.
+     */
     @Override
     public CreateEventPage5RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -60,6 +70,14 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
         return new CreateEventPage5RecyclerViewHolder(itemView);
     }
 
+    /**
+     *  Nakon referenciranja odgovarajucih vizuelnih elemenata ovog fragmenta, osposobljava se editovanje. Na odabir editovanja ovog elementa liste, to jest ove osobe, otvara se isti
+     *  popUpDialog prozor kao sto je za kreiranje osobe, samo sto su polja vec popunjena podacima ove osobe: email osobe, njihova uloga, kao i email osobe koja im je nadredjeni. Nakon
+     * izvrsenih izmena, pritiskom na confirm se podaci u listi, kao i u Singleton-u zamene novim i osvezi se vizuelno stanje RecyclerView-a na fragmentu, te se odmah pojave nove
+     * informacije u CardView-u. Takodje je omoguceno brisanje na DELETE tako sto se pritisne dugme DELETE iz menija. Nakon pritiska polja DELETE iz menija, izlazi popUpDialog sa
+     * pitanjem da li su sigurni da je zele obrisati. Pritiskom na dugme se potvrdjuje brisanje, te se iz liste i iz Singleton-a uklanja ova osoba, takodje i iz svih osoba koje su
+     * stavile ovu osobu kao njihovog nadredjenog.
+     */
     @Override
     public void onBindViewHolder(final CreateEventPage5RecyclerViewHolder holder, int position) {
         final EventPerson tempEventPerson = mEventPeople.get(holder.getAdapterPosition());
@@ -304,11 +322,17 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
         });*/
     }
 
+    /**
+     * Vraca se broj ljudi u listi svih ljudi.
+     */
     @Override
     public int getItemCount() {
         return mEventPeople.size();
     }
 
+    /**
+     * Metoda koja vrsi proveru da li je email odgovarajuceg formata.
+     */
     public static boolean isEmailValid(String email) {
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
@@ -316,6 +340,9 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
         return matcher.matches();
     }
 
+    /**
+     * ViewHolder za ovaj RecyclerView.
+     */
     class CreateEventPage5RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView specificRoleTextView, specificEmailTextView,parentRoleTextView,parentEmailTextView;
@@ -323,6 +350,9 @@ public class CreateEventPage5RecyclerAdapter extends RecyclerView.Adapter<Create
         RecyclerView peopleSubsRecyclerView;
         CardView personCardView;
 
+        /**
+         * Referenciranje svih vizuelnih elemenata ovog holdera.
+         */
         public CreateEventPage5RecyclerViewHolder(View itemView) {
             super(itemView);
 
